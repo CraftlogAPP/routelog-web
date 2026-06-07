@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Privacy Policy — RouteLog</title>
+<link rel="icon" href="favicon.png" />
+<style>
+  body { background:#0F1923; color:#F1F5F9; font-family: system-ui, sans-serif; line-height:1.7; max-width:760px; margin:0 auto; padding:48px 24px; }
+  h1 { font-size:32px; margin-bottom:8px; }
+  h2 { font-size:20px; margin:32px 0 8px; color:#3B82F6; }
+  h3 { font-size:16px; margin:18px 0 4px; color:#C0CAD6; }
+  p, li { color:#C0CAD6; font-size:16px; }
+  ul { margin:8px 0 0 20px; }
+  li { margin-bottom:8px; }
+  a { color:#60A5FA; }
+  .muted { color:#5A6B7B; font-size:14px; }
+  .lang { font-size:13px; color:#5A6B7B; margin:0 0 28px; }
+  .lang a { color:#60A5FA; }
+  .lang a[aria-current] { color:#94A3B8; text-decoration:none; }
+  .back { display:inline-flex; align-items:center; gap:8px; color:#94A3B8; font-size:14px; margin-bottom:12px; text-decoration:none; transition:color .2s; }
+  .back:hover { color:#3B82F6; }
+  .back svg { width:16px; height:16px; }
+</style>
+</head>
+<body>
+<a class="back" href="index.html">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Back to home
+</a>
+<div class="lang"><a href="datenschutz.html">DE</a> · <a href="privacy.html" aria-current="page">EN</a></div>
+<h1>Privacy Policy</h1>
+<p class="muted">Last updated: June 2026</p>
+
+<p>This policy explains how the mobile app <strong>RouteLog</strong> (the “App”) processes personal data, in line with the EU GDPR.</p>
+
+<h2>1. Controller</h2>
+<p>
+Alexander Pfalz<br>
+Hofsatz 29<br>
+7082 Donnerskirchen, Austria<br>
+Email: <a href="mailto:2easy4trash@gmail.com">2easy4trash@gmail.com</a>
+</p>
+
+<h2>2. Core principle: local-first</h2>
+<p>RouteLog is built local-first: your trips, places, vehicles and settings are stored <strong>locally on your device</strong> by default. Data is only transmitted to servers (a) if you create an account for cloud synchronization (section 3) and (b) for the optional AI categorization (section 5). Without an account and with AI turned off, your data stays solely on your device.</p>
+
+<h2>3. User account and cloud synchronization (optional)</h2>
+<p>You can use RouteLog entirely locally without an account. If you create an account to back up your data and make it available across devices, we process:</p>
+<ul>
+  <li><strong>Account data:</strong> your email address and a securely stored (hashed) password for sign-in.</li>
+  <li><strong>Synchronized content:</strong> your trips, vehicles and saved places are stored in the cloud so they are backed up and available on your devices.</li>
+  <li><strong>Processor:</strong> Supabase (hosting of authentication and database). Data is stored in a data center in the <strong>European Union (Frankfurt, Germany)</strong>; there is no third-country transfer for this. A data processing agreement under Art. 28 GDPR is in place.</li>
+  <li><strong>Access control:</strong> each user can access only their own data (row-level security).</li>
+  <li><strong>Legal basis:</strong> Art. 6(1)(b) GDPR (performance of the contract / providing the sync feature).</li>
+  <li><strong>Deletion:</strong> you can permanently delete your account and all data stored in the cloud at any time via “Settings → Delete account”.</li>
+</ul>
+
+<h2>4. Location data (GPS)</h2>
+<h3>Purpose</h3>
+<p>To record trips automatically, the App processes location data, including in the background (“Always allow”), to determine each trip’s start, destination, distance and time.</p>
+<h3>Legal basis</h3>
+<p>Art. 6(1)(a) GDPR (consent, via granting the location permission) and Art. 6(1)(b) GDPR (performance of the logbook feature).</p>
+<h3>Storage</h3>
+<p>Location and trip data remain on your device and — if you use an account — are synchronized to the cloud as described in section 3. You can disable background tracking at any time in the App settings or your device settings.</p>
+
+<h2>5. AI categorization (optional server communication)</h2>
+<p>To classify a trip as business, commute or private, the App may send selected trip information to our backend, which uses an AI model (Anthropic Claude).</p>
+<ul>
+  <li><strong>Data sent:</strong> start/destination address or coordinates, time, weekday, distance, your saved places (label/type) and a limited history of categorized trips. <strong>No name, account or device identifiers are sent.</strong></li>
+  <li><strong>Recipients / processors:</strong> Alexander Pfalz (own backend service, hosted at Railway Corp., USA) and Anthropic, PBC (AI processing), under Art. 28 GDPR data processing agreements.</li>
+  <li><strong>International transfers:</strong> processing may occur in the USA, based on the EU Standard Contractual Clauses (Art. 46 GDPR).</li>
+  <li><strong>Retention:</strong> requests are processed to produce a response and not retained for profiling.</li>
+  <li><strong>Legal basis:</strong> Art. 6(1)(b) GDPR (contract) or Art. 6(1)(a) GDPR (consent).</li>
+</ul>
+<p>You may leave the AI feature off; the App then categorizes locally using simple rules.</p>
+
+<h2>6. Subscriptions / in-app purchases</h2>
+<p>Subscriptions (“RouteLog Pro”) are handled by the relevant app store (Apple App Store, Google Play). Payment and contract data are processed by those providers under their privacy terms. We only receive your subscription status, never payment details.</p>
+
+<h2>7. No ads, no third-party tracking</h2>
+<p>RouteLog contains <strong>no advertising SDKs and no third-party analytics tracking</strong>.</p>
+
+<h2>8. Your rights</h2>
+<p>You have the right of access (Art. 15), rectification (Art. 16), erasure (Art. 17), restriction (Art. 18), data portability (Art. 20) and objection (Art. 21), and to withdraw consent at any time (Art. 7(3)). You can delete or export locally stored data yourself via “Settings → Erase all data”. If you use an account, you can remove it together with all data stored in the cloud via “Settings → Delete account”.</p>
+<p>You may also lodge a complaint with a supervisory authority (Art. 77 GDPR), e.g. the Austrian Data Protection Authority (Datenschutzbehörde, DSB), Barichgasse 40–42, 1030 Vienna, <a href="mailto:dsb@dsb.gv.at">dsb@dsb.gv.at</a>.</p>
+
+<h2>9. Security</h2>
+<p>Transmission to our servers (cloud synchronization and backend) is encrypted (TLS/HTTPS). Local data are protected by your operating system’s security mechanisms.</p>
+
+<h2>10. Changes</h2>
+<p>We may update this policy. The version published in the App applies.</p>
+
+<p class="muted" style="margin-top:32px">This document is not legal advice.</p>
+</body>
+</html>
