@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Datenschutzerklärung — RouteLog</title>
+<link rel="icon" href="favicon.png" />
+<style>
+  body { background:#0F1923; color:#F1F5F9; font-family: system-ui, sans-serif; line-height:1.7; max-width:760px; margin:0 auto; padding:48px 24px; }
+  h1 { font-size:32px; margin-bottom:8px; }
+  h2 { font-size:20px; margin:32px 0 8px; color:#3B82F6; }
+  h3 { font-size:16px; margin:18px 0 4px; color:#C0CAD6; }
+  p, li { color:#C0CAD6; font-size:16px; }
+  ul { margin:8px 0 0 20px; }
+  li { margin-bottom:8px; }
+  a { color:#60A5FA; }
+  .muted { color:#5A6B7B; font-size:14px; }
+  .back { display:inline-flex; align-items:center; gap:8px; color:#94A3B8; font-size:14px; margin-bottom:40px; text-decoration:none; transition:color .2s; }
+  .back:hover { color:#3B82F6; }
+  .back svg { width:16px; height:16px; }
+</style>
+</head>
+<body>
+<a class="back" href="index.html">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Zurück zur Startseite
+</a>
+<h1>Datenschutzerklärung</h1>
+<p class="muted">Stand: Juni 2026</p>
+
+<p>Diese Datenschutzerklärung informiert Sie über die Verarbeitung personenbezogener Daten bei der Nutzung der mobilen Anwendung <strong>RouteLog</strong> (nachfolgend „App“) gemäß der Datenschutz-Grundverordnung (DSGVO) sowie – soweit anwendbar – dem österreichischen DSG, dem deutschen BDSG und dem Schweizer DSG.</p>
+
+<h2>1. Verantwortlicher</h2>
+<p>
+Alexander Pfalz<br>
+Hofsatz 29<br>
+7082 Donnerskirchen, Österreich<br>
+E-Mail: <a href="mailto:2easy4trash@gmail.com">2easy4trash@gmail.com</a>
+</p>
+
+<h2>2. Grundprinzip: lokal-first</h2>
+<p>RouteLog ist „lokal-first“ aufgebaut: Ihre Fahrten, Orte, Fahrzeuge und Einstellungen werden zunächst <strong>lokal auf Ihrem Gerät</strong> gespeichert (Gerätespeicher / AsyncStorage). Eine Übertragung an Server erfolgt nur in folgenden Fällen: (a) wenn Sie ein Konto zur Cloud-Synchronisation anlegen (Ziffer 3) und (b) für die optionale KI-Kategorisierung (Ziffer 5). Ohne Konto und mit deaktivierter KI bleiben Ihre Daten ausschließlich auf Ihrem Gerät.</p>
+
+<h2>3. Benutzerkonto und Cloud-Synchronisation (optional)</h2>
+<p>Sie können RouteLog ohne Konto rein lokal nutzen. Legen Sie ein Konto an, um Ihre Daten zu sichern und geräteübergreifend verfügbar zu machen, verarbeiten wir:</p>
+<ul>
+  <li><strong>Kontodaten:</strong> Ihre E-Mail-Adresse sowie ein sicher gespeichertes (gehashtes) Passwort zur Anmeldung.</li>
+  <li><strong>Synchronisierte Inhalte:</strong> Ihre Fahrten, Fahrzeuge und gespeicherten Orte werden in der Cloud gespeichert, damit sie gesichert und auf Ihren Geräten verfügbar sind.</li>
+  <li><strong>Auftragsverarbeiter:</strong> Supabase (Hosting von Authentifizierung und Datenbank). Die Daten werden in einem Rechenzentrum in der <strong>Europäischen Union (Frankfurt, Deutschland)</strong> gespeichert; eine Drittlandübermittlung findet insoweit nicht statt. Es besteht ein Auftragsverarbeitungsvertrag gem. Art. 28 DSGVO.</li>
+  <li><strong>Zugriffsschutz:</strong> Jeder Nutzer kann ausschließlich auf seine eigenen Daten zugreifen (Row-Level-Security).</li>
+  <li><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (Erfüllung des Nutzungsvertrags bzw. Bereitstellung der Sync-Funktion).</li>
+  <li><strong>Löschung:</strong> Sie können Ihr Konto und sämtliche in der Cloud gespeicherten Daten jederzeit in der App unter „Einstellungen → Konto löschen“ unwiderruflich entfernen.</li>
+</ul>
+
+<h2>4. Standortdaten (GPS)</h2>
+<h3>Zweck</h3>
+<p>Zur automatischen Erfassung Ihrer Fahrten verarbeitet die App Standortdaten, auch im Hintergrund („Immer erlauben“). Daraus werden Start, Ziel, Strecke und Zeit einer Fahrt ermittelt.</p>
+<h3>Rechtsgrundlage</h3>
+<p>Art. 6 Abs. 1 lit. a DSGVO (Einwilligung durch Erteilung der Standortberechtigung) sowie Art. 6 Abs. 1 lit. b DSGVO (Erfüllung des Nutzungsvertrags der App-Funktion „Fahrtenbuch“).</p>
+<h3>Speicherung</h3>
+<p>Standort- und Fahrtdaten verbleiben lokal auf Ihrem Gerät und werden – sofern Sie ein Konto nutzen – gemäß Ziffer 3 in die Cloud synchronisiert. Sie können das Hintergrund-Tracking jederzeit in den Einstellungen oder über die Systemeinstellungen Ihres Geräts deaktivieren.</p>
+
+<h2>5. KI-gestützte Kategorisierung (optionale Serverkommunikation)</h2>
+<p>Zur Einordnung einer Fahrt als geschäftlich, Arbeitsweg oder privat kann die App ausgewählte Fahrtinformationen an unseren Backend-Dienst übermitteln, der ein KI-Modell (Anthropic Claude) nutzt.</p>
+<ul>
+  <li><strong>Übermittelte Daten:</strong> Start-/Zieladresse bzw. ‑koordinaten, Uhrzeit, Wochentag, Strecke, von Ihnen gespeicherte Orte (Bezeichnung/Typ) sowie eine begrenzte Historie kategorisierter Fahrten. <strong>Es werden keine Namens-, Konto- oder Gerätekennungen übermittelt.</strong></li>
+  <li><strong>Empfänger / Auftragsverarbeiter:</strong> Alexander Pfalz (eigener Backend-Dienst, gehostet bei Railway Corp., USA) sowie Anthropic, PBC (KI-Verarbeitung). Mit diesen Empfängern bestehen Auftragsverarbeitungsverträge gem. Art. 28 DSGVO.</li>
+  <li><strong>Drittlandübermittlung:</strong> Eine Verarbeitung kann in den USA erfolgen. Grundlage sind die EU-Standardvertragsklauseln (Art. 46 DSGVO).</li>
+  <li><strong>Speicherung:</strong> Die Anfragen werden zur Beantwortung verarbeitet und nicht dauerhaft zu Profilbildungszwecken gespeichert.</li>
+  <li><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung) bzw. Art. 6 Abs. 1 lit. a DSGVO (Einwilligung).</li>
+</ul>
+<p>Sie können die KI-Funktion deaktiviert lassen; die App kategorisiert dann lokal anhand einfacher Regeln.</p>
+
+<h2>6. Abonnement / In-App-Käufe</h2>
+<p>Die Abwicklung von Abonnements („RouteLog Pro“) erfolgt über den jeweiligen App-Store (Apple App Store, Google Play). Die Zahlungs- und Vertragsdaten werden von diesen Anbietern nach deren Datenschutzbestimmungen verarbeitet. Wir erhalten nur den Status Ihres Abonnements, keine Zahlungsdaten.</p>
+
+<h2>7. Keine Werbung, kein Tracking durch Dritte</h2>
+<p>RouteLog enthält <strong>keine Werbe-SDKs und kein Analyse-Tracking durch Dritte</strong>.</p>
+
+<h2>8. Ihre Rechte</h2>
+<p>Sie haben das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21) sowie das Recht, eine erteilte Einwilligung jederzeit zu widerrufen (Art. 7 Abs. 3 DSGVO). Lokal gespeicherte Daten können Sie jederzeit selbst über „Einstellungen → Alle Daten löschen“ entfernen oder exportieren. Nutzen Sie ein Konto, können Sie dieses samt aller in der Cloud gespeicherten Daten unter „Einstellungen → Konto löschen“ entfernen.</p>
+<p>Sie haben zudem das Recht auf Beschwerde bei einer Aufsichtsbehörde (Art. 77 DSGVO), z. B. der österreichischen Datenschutzbehörde (DSB), Barichgasse 40–42, 1030 Wien, <a href="mailto:dsb@dsb.gv.at">dsb@dsb.gv.at</a>.</p>
+
+<h2>9. Datensicherheit</h2>
+<p>Die Übertragung an unsere Server (Cloud-Synchronisation und Backend) erfolgt verschlüsselt (TLS/HTTPS). Lokale Daten sind durch die Sicherheitsmechanismen Ihres Betriebssystems geschützt.</p>
+
+<h2>10. Änderungen</h2>
+<p>Wir behalten uns vor, diese Datenschutzerklärung anzupassen. Es gilt die jeweils in der App veröffentlichte Fassung.</p>
+
+<p class="muted" style="margin-top:32px">Diese Erklärung ersetzt keine Rechtsberatung.</p>
+</body>
+</html>

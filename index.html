@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RouteLog — Das smarte Fahrtenbuch</title>
+  <meta name="description" content="RouteLog zeichnet jede Fahrt automatisch auf und sortiert sie per KI in geschäftlich und privat. Tax-ready PDF-Export, Dashboard und gespeicherte Orte — dein Fahrtenbuch schreibt sich von selbst." />
+  <link rel="icon" href="favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0F1923;
+      --surface: #16222E;
+      --surface-raised: #1C2A38;
+      --accent: #3B82F6;
+      --accent-soft: #60A5FA;
+      --text: #F1F5F9;
+      --muted: #94A3B8;
+      --faint: #5A6B7B;
+      --hairline: #25323F;
+      --display: 'Fraunces', Georgia, serif;
+      --body: 'DM Sans', system-ui, sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    a { color: inherit; text-decoration: none; }
+
+    /* Header */
+    header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 0;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; font-family: var(--display); font-weight: 700; font-size: 22px; }
+    .mark { width: 38px; height: 38px; }
+    nav a { color: var(--muted); margin-left: 28px; font-size: 15px; transition: color .2s; }
+    nav a:hover { color: var(--accent); }
+
+    /* Hero */
+    .hero { position: relative; text-align: center; padding: 80px 0 100px; }
+    .hero::before {
+      content: ''; position: absolute; top: -120px; left: 50%; transform: translateX(-50%);
+      width: 520px; height: 520px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(59,130,246,0.16), transparent 65%);
+      pointer-events: none;
+    }
+    .kicker { color: var(--accent-soft); letter-spacing: 3px; text-transform: uppercase; font-size: 13px; font-weight: 500; }
+    .hero h1 {
+      font-family: var(--display); font-weight: 700; font-size: clamp(44px, 8vw, 86px);
+      line-height: 1.02; margin: 18px 0 22px; letter-spacing: -1px;
+    }
+    .hero h1 .accent { color: var(--accent); }
+    .hero p { color: var(--muted); font-size: clamp(17px, 2.4vw, 21px); max-width: 620px; margin: 0 auto 40px; }
+    .cta { display: inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 15px 30px; border-radius: 999px; font-weight: 700; font-size: 16px;
+      transition: transform .15s, opacity .15s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--accent); color: #0A1018; }
+    .btn-ghost { background: var(--surface); color: var(--accent-soft); border: 1px solid var(--hairline); }
+    .hero .hint { color: var(--faint); font-size: 14px; margin-top: 22px; }
+
+    /* Sections */
+    section { padding: 70px 0; }
+    .section-label { color: var(--accent-soft); letter-spacing: 2px; text-transform: uppercase; font-size: 13px; font-weight: 500; text-align: center; }
+    .section-title { font-family: var(--display); font-weight: 600; font-size: clamp(30px, 5vw, 46px); text-align: center; margin: 10px 0 50px; }
+
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--hairline); border-radius: 24px; padding: 32px;
+      transition: border-color .2s, transform .2s;
+    }
+    .card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .card .ic { width: 52px; height: 52px; border-radius: 14px; background: var(--surface-raised); display: flex; align-items: center; justify-content: center; font-size: 26px; margin-bottom: 18px; }
+    .card h3 { font-family: var(--display); font-weight: 600; font-size: 22px; margin-bottom: 8px; }
+    .card p { color: var(--muted); font-size: 15px; }
+
+    /* How it works */
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .step { text-align: center; padding: 16px; }
+    .step .num { font-family: var(--display); font-weight: 700; font-size: 40px; color: var(--accent); }
+    .step h3 { font-family: var(--display); font-weight: 600; font-size: 20px; margin: 8px 0 6px; }
+    .step p { color: var(--muted); font-size: 15px; }
+
+    /* Download CTA band */
+    .band { background: linear-gradient(180deg, rgba(59,130,246,0.10), var(--surface)); border: 1px solid var(--hairline); border-radius: 28px; padding: 56px 32px; text-align: center; }
+    .band h2 { font-family: var(--display); font-weight: 600; font-size: clamp(28px, 4.5vw, 40px); margin-bottom: 14px; }
+    .band p { color: var(--muted); max-width: 520px; margin: 0 auto 32px; }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--hairline); padding: 40px 0; text-align: center; color: var(--faint); font-size: 14px; margin-top: 40px; }
+    footer a { color: var(--muted); margin: 0 12px; }
+    footer a:hover { color: var(--accent); }
+    .foot-brand { font-family: var(--display); font-weight: 600; color: var(--text); margin-bottom: 12px; font-size: 18px; }
+    .flags { color: var(--faint); font-size: 14px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <svg class="mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" rx="24" fill="#16222E"/>
+          <path d="M26 70 C26 50 50 56 50 40" stroke="#3B82F6" stroke-width="9" stroke-linecap="round" stroke-dasharray="2 16" fill="none"/>
+          <circle cx="26" cy="70" r="6" fill="#3B82F6"/>
+          <path d="M62 26 a16 16 0 0 0 -16 16 c0 12 16 26 16 26 s16 -14 16 -26 a16 16 0 0 0 -16 -16 z" fill="#3B82F6"/>
+          <circle cx="62" cy="42" r="6" fill="#16222E"/>
+        </svg>
+        RouteLog
+      </div>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#so-gehts">So geht's</a>
+        <a href="#download">Download</a>
+      </nav>
+    </header>
+  </div>
+
+  <div class="wrap">
+    <div class="hero">
+      <div class="kicker">Das smarte Fahrtenbuch</div>
+      <h1>Jeder Kilometer, <span class="accent">automatisch erfasst.</span></h1>
+      <p>RouteLog zeichnet deine Fahrten im Hintergrund auf und sortiert sie per KI in geschäftlich und privat. Du bestätigst mit einem Tipp — am Monatsende exportierst du ein finanzamt-taugliches PDF.</p>
+      <div class="cta" id="download">
+        <a class="btn btn-primary" href="#">App Store</a>
+        <a class="btn btn-ghost" href="#">Google Play</a>
+      </div>
+      <div class="hint">Für Selbstständige, Freiberufler & kleine Betriebe in ganz Europa.</div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <section id="features">
+      <div class="section-label">Was drin ist</div>
+      <h2 class="section-title">Dein Fahrtenbuch schreibt sich selbst</h2>
+      <div class="features">
+        <div class="card"><div class="ic">📍</div><h3>Automatisches GPS-Tracking</h3><p>Fahrten starten und stoppen von selbst, sobald du losfährst — auch wenn die App geschlossen ist. Keine Knöpfe, kein Vergessen.</p></div>
+        <div class="card"><div class="ic">🤖</div><h3>KI-Kategorisierung</h3><p>Smarte Einordnung in geschäftlich, Arbeitsweg oder privat — aus Ziel, Uhrzeit, Wochentag und deinen Orten. Du bestätigst mit einem Tipp.</p></div>
+        <div class="card"><div class="ic">📄</div><h3>Tax-ready PDF-Export</h3><p>Am Monatsende ein sauberes, prüfsicheres PDF, das Steuerberater und Finanzamt akzeptieren — lokalisiert und vollständig.</p></div>
+        <div class="card"><div class="ic">📊</div><h3>Dashboard</h3><p>Gesamt-Kilometer, geschäftliche km und deine geschätzte Steuerersparnis auf einen Blick.</p></div>
+        <div class="card"><div class="ic">⭐</div><h3>Gespeicherte Orte</h3><p>Zuhause, Büro und Stammkunden hinterlegen — RouteLog macht daraus noch treffsicherere Vorschläge.</p></div>
+        <div class="card"><div class="ic">🚐</div><h3>Mehrere Fahrzeuge</h3><p>Verwalte mehrere Fahrzeuge mit eigenem Kilometerstand und ordne jede Fahrt dem richtigen zu.</p></div>
+        <div class="card"><div class="ic">✍️</div><h3>Manuelle Erfassung</h3><p>Eine Fahrt mal nicht getrackt? Trag sie in Sekunden von Hand nach — als Rückfalloption immer dabei.</p></div>
+        <div class="card"><div class="ic">🌍</div><h3>Länder-genau</h3><p>Kilometersätze, Währung und Einheiten für 🇩🇪 DE, 🇦🇹 AT, 🇨🇭 CH, 🇬🇧 UK und 🇳🇱 NL.</p></div>
+        <div class="card"><div class="ic">🗣️</div><h3>Komplett mehrsprachig</h3><p>Deutsch, Englisch, Französisch und Niederländisch — mit automatischer Geräteerkennung und Umschalter in der App.</p></div>
+        <div class="card"><div class="ic">🔒</div><h3>Privat & lokal-first</h3><p>Deine Fahrten liegen auf dem Gerät — mit Konto optional verschlüsselt in der EU-Cloud gesichert. Keine Werbung, kein Tracking durch Dritte.</p></div>
+        <div class="card"><div class="ic">☁️</div><h3>Konto & Cloud-Backup</h3><p>Optional anmelden und deine Fahrten, Fahrzeuge und Orte sicher in der Cloud (EU/Frankfurt) sichern — geräteübergreifend, jederzeit wieder löschbar.</p></div>
+      </div>
+    </section>
+
+    <section id="so-gehts">
+      <div class="section-label">So geht's</div>
+      <h2 class="section-title">In drei Schritten zum Fahrtenbuch</h2>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><h3>Losfahren</h3><p>RouteLog erkennt die Fahrt automatisch und zeichnet Start, Ziel, Strecke und Zeit auf.</p></div>
+        <div class="step"><div class="num">2</div><h3>Bestätigen</h3><p>Die KI schlägt geschäftlich oder privat vor — du bestätigst die Fahrt mit einem einzigen Tipp.</p></div>
+        <div class="step"><div class="num">3</div><h3>Exportieren</h3><p>Am Monatsende ein PDF erzeugen, an den Steuerberater schicken — fertig.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="band">
+        <h2>Schluss mit dem Zettelwirtschaft-Fahrtenbuch</h2>
+        <p>Lade RouteLog und lass jede Fahrt automatisch erfassen und kategorisieren. Kostenlos bis zu 20 Fahrten pro Monat.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#">App Store</a>
+          <a class="btn btn-ghost" href="#">Google Play</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-brand">RouteLog</div>
+      <div>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="konto-loeschen.html">Konto löschen</a>
+      </div>
+      <p class="flags">🇩🇪 🇦🇹 🇨🇭 🇬🇧 🇳🇱 — gebaut für Fahrer in ganz Europa.</p>
+      <p style="margin-top:12px">© 2026 RouteLog · Alexander Pfalz. Mit ♥ gebaut.</p>
+      <p style="margin-top:10px; max-width:560px; margin-left:auto; margin-right:auto;">RouteLog hilft beim Dokumentieren und ersetzt keine Steuerberatung. Bitte Einträge vor der Abgabe beim Finanzamt prüfen.</p>
+    </div>
+  </footer>
+</body>
+</html>
