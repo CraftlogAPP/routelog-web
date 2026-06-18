@@ -99,6 +99,16 @@
     .band h2 { font-family: var(--display); font-weight: 600; font-size: clamp(28px, 4.5vw, 40px); margin-bottom: 14px; }
     .band p { color: var(--muted); max-width: 520px; margin: 0 auto 32px; }
 
+    /* More apps (cross-promo) */
+    .apps { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 760px; margin: 0 auto; }
+    .app-card { display: flex; align-items: center; gap: 18px; background: var(--surface); border: 1px solid var(--hairline); border-radius: 24px; padding: 22px 24px; transition: border-color .2s, transform .2s; }
+    .app-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .app-card img { width: 60px; height: 60px; border-radius: 15px; flex-shrink: 0; border: 1px solid var(--hairline); }
+    .app-card .meta { min-width: 0; }
+    .app-card h3 { font-family: var(--display); font-weight: 600; font-size: 20px; margin-bottom: 4px; }
+    .app-card p { color: var(--muted); font-size: 14px; margin-bottom: 10px; }
+    .app-card .open { color: var(--accent-soft); font-weight: 700; font-size: 14px; }
+
     /* Footer */
     footer { border-top: 1px solid var(--hairline); padding: 40px 0; text-align: center; color: var(--faint); font-size: 14px; margin-top: 40px; }
     footer a { color: var(--muted); margin: 0 12px; }
@@ -178,6 +188,31 @@
           <a class="btn btn-primary" href="#">App Store</a>
           <a class="btn btn-ghost" href="#">Google Play</a>
         </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="wrap">
+    <section id="apps">
+      <div class="section-label">Mehr von uns</div>
+      <h2 class="section-title">Weitere Apps für dich</h2>
+      <div class="apps">
+        <a class="app-card" href="https://craftlogapp.github.io/craftlog-web" target="_blank" rel="noopener">
+          <img src="craftlog-icon.png" alt="CraftLog" />
+          <div class="meta">
+            <h3>CraftLog</h3>
+            <p>Projekt-Tagebuch für Heimwerker – Schritte, Material und Stunden im Blick.</p>
+            <span class="open">Ansehen →</span>
+          </div>
+        </a>
+        <a class="app-card" href="https://craftlogapp.github.io/archio-web" target="_blank" rel="noopener">
+          <img src="archio-icon.png" alt="Archio" />
+          <div class="meta">
+            <h3>Archio</h3>
+            <p>Dokumente scannen und per KI verstehen – Belege, Verträge und mehr.</p>
+            <span class="open">Ansehen →</span>
+          </div>
+        </a>
       </div>
     </section>
   </div>
