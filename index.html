@@ -13,9 +13,11 @@
     :root {
       --bg: #0F1923;
       --surface: #16222E;
+      --surface2: #121C27;
       --surface-raised: #1C2A38;
       --accent: #3B82F6;
       --accent-soft: #60A5FA;
+      --glow: rgba(59,130,246,.16);
       --text: #F1F5F9;
       --muted: #94A3B8;
       --faint: #5A6B7B;
@@ -26,32 +28,52 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
-      background: var(--bg);
+      background:
+        radial-gradient(1100px 620px at 20% -140px, rgba(59,130,246,.18), transparent 65%),
+        radial-gradient(900px 600px at 95% 5%, rgba(96,165,250,.10), transparent 62%),
+        radial-gradient(800px 520px at 50% 115%, rgba(59,130,246,.08), transparent 60%),
+        var(--bg);
+      background-attachment: fixed;
       color: var(--text);
       font-family: var(--body);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
-    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+      background-size: 44px 44px;
+      -webkit-mask-image: radial-gradient(900px 620px at 50% 0%, #000 25%, transparent 75%);
+      mask-image: radial-gradient(900px 620px at 50% 0%, #000 25%, transparent 75%);
+    }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
     a { color: inherit; text-decoration: none; }
 
-    /* Header */
+    /* Sticky glass header */
+    .sitehead {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(15,25,35,.72);
+      -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
     header {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 28px 0;
+      padding: 16px 0;
     }
     .brand { display: flex; align-items: center; gap: 12px; font-family: var(--display); font-weight: 700; font-size: 22px; }
-    .mark { width: 38px; height: 38px; }
+    .mark { width: 38px; height: 38px; filter: drop-shadow(0 6px 16px rgba(59,130,246,.35)); }
     nav a { color: var(--muted); margin-left: 28px; font-size: 15px; transition: color .2s; }
-    nav a:hover { color: var(--accent); }
+    nav a:hover { color: var(--accent-soft); }
 
     /* Hero */
-    .hero { position: relative; text-align: center; padding: 80px 0 100px; }
+    .hero { position: relative; text-align: center; padding: 90px 0 90px; }
     .hero::before {
       content: ''; position: absolute; top: -120px; left: 50%; transform: translateX(-50%);
-      width: 520px; height: 520px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(59,130,246,0.16), transparent 65%);
+      width: 620px; height: 620px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(59,130,246,0.18), transparent 65%);
       pointer-events: none;
     }
     .kicker { color: var(--accent-soft); letter-spacing: 3px; text-transform: uppercase; font-size: 13px; font-weight: 500; }
@@ -59,18 +81,33 @@
       font-family: var(--display); font-weight: 700; font-size: clamp(44px, 8vw, 86px);
       line-height: 1.02; margin: 18px 0 22px; letter-spacing: -1px;
     }
-    .hero h1 .accent { color: var(--accent); }
+    .hero h1 .accent {
+      background: linear-gradient(120deg, #93C5FD, var(--accent));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
     .hero p { color: var(--muted); font-size: clamp(17px, 2.4vw, 21px); max-width: 620px; margin: 0 auto 40px; }
     .cta { display: inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
     .btn {
       display: inline-flex; align-items: center; gap: 10px;
       padding: 15px 30px; border-radius: 999px; font-weight: 700; font-size: 16px;
-      transition: transform .15s, opacity .15s;
+      transition: transform .15s, box-shadow .15s, border-color .15s;
     }
     .btn:hover { transform: translateY(-2px); }
-    .btn-primary { background: var(--accent); color: #0A1018; }
+    .btn-primary { background: linear-gradient(135deg, var(--accent-soft), var(--accent)); color: #0A1018;
+      box-shadow: 0 10px 30px rgba(59,130,246,.35); }
+    .btn-primary:hover { box-shadow: 0 14px 38px rgba(59,130,246,.45); }
     .btn-ghost { background: var(--surface); color: var(--accent-soft); border: 1px solid var(--hairline); }
+    .btn-ghost:hover { border-color: var(--accent); }
     .hero .hint { color: var(--faint); font-size: 14px; margin-top: 22px; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .hero > * { opacity: 0; transform: translateY(16px); animation: rise .7s cubic-bezier(.22,.61,.36,1) forwards; }
+      .hero > *:nth-child(2) { animation-delay: .08s; }
+      .hero > *:nth-child(3) { animation-delay: .16s; }
+      .hero > *:nth-child(4) { animation-delay: .24s; }
+      .hero > *:nth-child(5) { animation-delay: .32s; }
+      @keyframes rise { to { opacity: 1; transform: none; } }
+    }
 
     /* Sections */
     section { padding: 70px 0; }
@@ -79,63 +116,96 @@
 
     .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
     .card {
-      background: var(--surface); border: 1px solid var(--hairline); border-radius: 24px; padding: 32px;
+      position: relative; overflow: hidden;
+      background: linear-gradient(180deg, var(--surface), var(--surface2));
+      border: 1px solid var(--hairline); border-radius: 24px; padding: 32px;
       transition: border-color .2s, transform .2s;
     }
+    .card::before { content: ''; position: absolute; inset: 0;
+      background: radial-gradient(360px 180px at 100% 0%, var(--glow), transparent 70%); opacity: .8; }
+    .card > * { position: relative; }
     .card:hover { border-color: var(--accent); transform: translateY(-4px); }
-    .card .ic { width: 52px; height: 52px; border-radius: 14px; background: var(--surface-raised); display: flex; align-items: center; justify-content: center; font-size: 26px; margin-bottom: 18px; }
+    .card .ic { width: 52px; height: 52px; border-radius: 14px; background: var(--surface-raised);
+      border: 1px solid rgba(96,165,250,.2);
+      display: flex; align-items: center; justify-content: center; font-size: 26px; margin-bottom: 18px; }
     .card h3 { font-family: var(--display); font-weight: 600; font-size: 22px; margin-bottom: 8px; }
     .card p { color: var(--muted); font-size: 15px; }
 
     /* How it works */
     .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
     .step { text-align: center; padding: 16px; }
-    .step .num { font-family: var(--display); font-weight: 700; font-size: 40px; color: var(--accent); }
+    .step .num { font-family: var(--display); font-weight: 700; font-size: 44px;
+      background: linear-gradient(120deg, #93C5FD, var(--accent));
+      -webkit-background-clip: text; background-clip: text; color: transparent; }
     .step h3 { font-family: var(--display); font-weight: 600; font-size: 20px; margin: 8px 0 6px; }
     .step p { color: var(--muted); font-size: 15px; }
 
     /* Download CTA band */
-    .band { background: linear-gradient(180deg, rgba(59,130,246,0.10), var(--surface)); border: 1px solid var(--hairline); border-radius: 28px; padding: 56px 32px; text-align: center; }
+    .band { position: relative; overflow: hidden;
+      background: linear-gradient(135deg, rgba(59,130,246,0.16), var(--surface));
+      border: 1px solid rgba(96,165,250,.3); border-radius: 28px; padding: 56px 32px; text-align: center;
+      box-shadow: 0 24px 60px rgba(0,0,0,.35); }
+    .band::before { content: ''; position: absolute; inset: 0;
+      background: radial-gradient(500px 240px at 50% 0%, rgba(96,165,250,.14), transparent 70%); }
+    .band > * { position: relative; }
     .band h2 { font-family: var(--display); font-weight: 600; font-size: clamp(28px, 4.5vw, 40px); margin-bottom: 14px; }
     .band p { color: var(--muted); max-width: 520px; margin: 0 auto 32px; }
 
     /* More apps (cross-promo) */
     .apps { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 760px; margin: 0 auto; }
-    .app-card { display: flex; align-items: center; gap: 18px; background: var(--surface); border: 1px solid var(--hairline); border-radius: 24px; padding: 22px 24px; transition: border-color .2s, transform .2s; }
+    .app-card { position: relative; overflow: hidden; display: flex; align-items: center; gap: 18px;
+      background: linear-gradient(180deg, var(--surface), var(--surface2));
+      border: 1px solid var(--hairline); border-radius: 24px; padding: 22px 24px;
+      transition: border-color .2s, transform .2s; }
+    .app-card::before { content: ''; position: absolute; inset: 0;
+      background: radial-gradient(300px 140px at 100% 0%, var(--glow), transparent 70%); opacity: .7; }
+    .app-card > * { position: relative; }
     .app-card:hover { border-color: var(--accent); transform: translateY(-4px); }
-    .app-card img { width: 60px; height: 60px; border-radius: 15px; flex-shrink: 0; }
+    .app-card img { width: 60px; height: 60px; border-radius: 15px; flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.08); }
     .app-card .meta { min-width: 0; }
     .app-card h3 { font-family: var(--display); font-weight: 600; font-size: 20px; margin-bottom: 4px; }
     .app-card p { color: var(--muted); font-size: 14px; margin-bottom: 10px; }
     .app-card .open { color: var(--accent-soft); font-weight: 700; font-size: 14px; }
 
+    /* Scroll reveal */
+    .reveal.pre { opacity: 0; transform: translateY(18px); }
+    .reveal.in { opacity: 1; transform: none; transition: opacity .6s ease, transform .6s cubic-bezier(.22,.61,.36,1); }
+    .features .reveal.in:nth-child(2), .apps .reveal.in:nth-child(2), .steps .reveal.in:nth-child(2) { transition-delay: .07s; }
+    .features .reveal.in:nth-child(3), .apps .reveal.in:nth-child(3), .steps .reveal.in:nth-child(3) { transition-delay: .14s; }
+    .features .reveal.in:nth-child(4), .apps .reveal.in:nth-child(4) { transition-delay: .21s; }
+    .features .reveal.in:nth-child(5), .apps .reveal.in:nth-child(5) { transition-delay: .28s; }
+    .features .reveal.in:nth-child(6), .apps .reveal.in:nth-child(6) { transition-delay: .35s; }
+
     /* Footer */
-    footer { border-top: 1px solid var(--hairline); padding: 40px 0; text-align: center; color: var(--faint); font-size: 14px; margin-top: 40px; }
+    footer { border-top: 1px solid var(--hairline); padding: 40px 0; text-align: center; color: var(--faint); font-size: 14px; margin-top: 40px; position: relative; z-index: 1; }
     footer a { color: var(--muted); margin: 0 12px; }
-    footer a:hover { color: var(--accent); }
+    footer a:hover { color: var(--accent-soft); }
     .foot-brand { font-family: var(--display); font-weight: 600; color: var(--text); margin-bottom: 12px; font-size: 18px; }
     .flags { color: var(--faint); font-size: 14px; margin-top: 10px; }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <svg class="mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="100" height="100" rx="24" fill="#16222E"/>
-          <path d="M26 70 C26 50 50 56 50 40" stroke="#3B82F6" stroke-width="9" stroke-linecap="round" stroke-dasharray="2 16" fill="none"/>
-          <circle cx="26" cy="70" r="6" fill="#3B82F6"/>
-          <path d="M62 26 a16 16 0 0 0 -16 16 c0 12 16 26 16 26 s16 -14 16 -26 a16 16 0 0 0 -16 -16 z" fill="#3B82F6"/>
-          <circle cx="62" cy="42" r="6" fill="#16222E"/>
-        </svg>
-        TourDex
-      </div>
-      <nav>
-        <a href="#features">Features</a>
-        <a href="#so-gehts">So geht's</a>
-        <a href="#download">Download</a>
-      </nav>
-    </header>
+  <div class="sitehead">
+    <div class="wrap">
+      <header>
+        <div class="brand">
+          <svg class="mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="100" rx="24" fill="#16222E"/>
+            <path d="M26 70 C26 50 50 56 50 40" stroke="#3B82F6" stroke-width="9" stroke-linecap="round" stroke-dasharray="2 16" fill="none"/>
+            <circle cx="26" cy="70" r="6" fill="#3B82F6"/>
+            <path d="M62 26 a16 16 0 0 0 -16 16 c0 12 16 26 16 26 s16 -14 16 -26 a16 16 0 0 0 -16 -16 z" fill="#3B82F6"/>
+            <circle cx="62" cy="42" r="6" fill="#16222E"/>
+          </svg>
+          TourDex
+        </div>
+        <nav>
+          <a href="#features">Features</a>
+          <a href="#so-gehts">So geht's</a>
+          <a href="#download">Download</a>
+        </nav>
+      </header>
+    </div>
   </div>
 
   <div class="wrap">
@@ -146,7 +216,7 @@
       <div class="cta" id="download">
         <a class="btn btn-primary" href="#">Google Play</a>
       </div>
-      <div class="hint">Für Selbstständige, Freiberufler & kleine Betriebe in ganz Europa.</div>
+      <div class="hint">Für Selbstständige, Freiberufler &amp; kleine Betriebe in ganz Europa.</div>
     </div>
   </div>
 
@@ -155,17 +225,17 @@
       <div class="section-label">Was drin ist</div>
       <h2 class="section-title">Dein Fahrtenbuch schreibt sich selbst</h2>
       <div class="features">
-        <div class="card"><div class="ic">📍</div><h3>Automatisches GPS-Tracking</h3><p>Fahrten starten und stoppen von selbst, sobald du losfährst — auch wenn die App geschlossen ist. Keine Knöpfe, kein Vergessen.</p></div>
-        <div class="card"><div class="ic">🤖</div><h3>KI-Kategorisierung</h3><p>Smarte Einordnung in geschäftlich, Arbeitsweg oder privat — aus Ziel, Uhrzeit, Wochentag und deinen Orten. Du bestätigst mit einem Tipp.</p></div>
-        <div class="card"><div class="ic">📄</div><h3>Tax-ready PDF-Export</h3><p>Am Monatsende ein sauberes, prüfsicheres PDF, das Steuerberater und Finanzamt akzeptieren — lokalisiert und vollständig.</p></div>
-        <div class="card"><div class="ic">📊</div><h3>Dashboard</h3><p>Gesamt-Kilometer, geschäftliche km und deine geschätzte Steuerersparnis auf einen Blick.</p></div>
-        <div class="card"><div class="ic">⭐</div><h3>Gespeicherte Orte</h3><p>Zuhause, Büro und Stammkunden hinterlegen — TourDex macht daraus noch treffsicherere Vorschläge.</p></div>
-        <div class="card"><div class="ic">🚐</div><h3>Mehrere Fahrzeuge</h3><p>Verwalte mehrere Fahrzeuge mit eigenem Kilometerstand und ordne jede Fahrt dem richtigen zu.</p></div>
-        <div class="card"><div class="ic">✍️</div><h3>Manuelle Erfassung</h3><p>Eine Fahrt mal nicht getrackt? Trag sie in Sekunden von Hand nach — als Rückfalloption immer dabei.</p></div>
-        <div class="card"><div class="ic">🌍</div><h3>Länder-genau</h3><p>Kilometersätze, Währung und Einheiten für 🇩🇪 DE, 🇦🇹 AT, 🇨🇭 CH, 🇬🇧 UK und 🇳🇱 NL.</p></div>
-        <div class="card"><div class="ic">🗣️</div><h3>Komplett mehrsprachig</h3><p>Deutsch, Englisch, Französisch und Niederländisch — mit automatischer Geräteerkennung und Umschalter in der App.</p></div>
-        <div class="card"><div class="ic">🔒</div><h3>Privat & lokal-first</h3><p>Deine Fahrten liegen auf dem Gerät — mit Konto optional verschlüsselt in der EU-Cloud gesichert. Keine Werbung, kein Tracking durch Dritte.</p></div>
-        <div class="card"><div class="ic">☁️</div><h3>Konto & Cloud-Backup</h3><p>Optional anmelden und deine Fahrten, Fahrzeuge und Orte sicher in der Cloud (EU/Frankfurt) sichern — geräteübergreifend, jederzeit wieder löschbar.</p></div>
+        <div class="card reveal"><div class="ic">📍</div><h3>Automatisches GPS-Tracking</h3><p>Fahrten starten und stoppen von selbst, sobald du losfährst — auch wenn die App geschlossen ist. Keine Knöpfe, kein Vergessen.</p></div>
+        <div class="card reveal"><div class="ic">🤖</div><h3>KI-Kategorisierung</h3><p>Smarte Einordnung in geschäftlich, Arbeitsweg oder privat — aus Ziel, Uhrzeit, Wochentag und deinen Orten. Du bestätigst mit einem Tipp.</p></div>
+        <div class="card reveal"><div class="ic">📄</div><h3>Tax-ready PDF-Export</h3><p>Am Monatsende ein sauberes, prüfsicheres PDF, das Steuerberater und Finanzamt akzeptieren — lokalisiert und vollständig.</p></div>
+        <div class="card reveal"><div class="ic">📊</div><h3>Dashboard</h3><p>Gesamt-Kilometer, geschäftliche km und deine geschätzte Steuerersparnis auf einen Blick.</p></div>
+        <div class="card reveal"><div class="ic">⭐</div><h3>Gespeicherte Orte</h3><p>Zuhause, Büro und Stammkunden hinterlegen — TourDex macht daraus noch treffsicherere Vorschläge.</p></div>
+        <div class="card reveal"><div class="ic">🚐</div><h3>Mehrere Fahrzeuge</h3><p>Verwalte mehrere Fahrzeuge mit eigenem Kilometerstand und ordne jede Fahrt dem richtigen zu.</p></div>
+        <div class="card reveal"><div class="ic">✍️</div><h3>Manuelle Erfassung</h3><p>Eine Fahrt mal nicht getrackt? Trag sie in Sekunden von Hand nach — als Rückfalloption immer dabei.</p></div>
+        <div class="card reveal"><div class="ic">🌍</div><h3>Länder-genau</h3><p>Kilometersätze, Währung und Einheiten für 🇩🇪 DE, 🇦🇹 AT, 🇨🇭 CH, 🇬🇧 UK und 🇳🇱 NL.</p></div>
+        <div class="card reveal"><div class="ic">🗣️</div><h3>Komplett mehrsprachig</h3><p>Deutsch, Englisch, Französisch und Niederländisch — mit automatischer Geräteerkennung und Umschalter in der App.</p></div>
+        <div class="card reveal"><div class="ic">🔒</div><h3>Privat &amp; lokal-first</h3><p>Deine Fahrten liegen auf dem Gerät — mit Konto optional verschlüsselt in der EU-Cloud gesichert. Keine Werbung, kein Tracking durch Dritte.</p></div>
+        <div class="card reveal"><div class="ic">☁️</div><h3>Konto &amp; Cloud-Backup</h3><p>Optional anmelden und deine Fahrten, Fahrzeuge und Orte sicher in der Cloud (EU/Frankfurt) sichern — geräteübergreifend, jederzeit wieder löschbar.</p></div>
       </div>
     </section>
 
@@ -173,14 +243,14 @@
       <div class="section-label">So geht's</div>
       <h2 class="section-title">In drei Schritten zum Fahrtenbuch</h2>
       <div class="steps">
-        <div class="step"><div class="num">1</div><h3>Losfahren</h3><p>TourDex erkennt die Fahrt automatisch und zeichnet Start, Ziel, Strecke und Zeit auf.</p></div>
-        <div class="step"><div class="num">2</div><h3>Bestätigen</h3><p>Die KI schlägt geschäftlich oder privat vor — du bestätigst die Fahrt mit einem einzigen Tipp.</p></div>
-        <div class="step"><div class="num">3</div><h3>Exportieren</h3><p>Am Monatsende ein PDF erzeugen, an den Steuerberater schicken — fertig.</p></div>
+        <div class="step reveal"><div class="num">1</div><h3>Losfahren</h3><p>TourDex erkennt die Fahrt automatisch und zeichnet Start, Ziel, Strecke und Zeit auf.</p></div>
+        <div class="step reveal"><div class="num">2</div><h3>Bestätigen</h3><p>Die KI schlägt geschäftlich oder privat vor — du bestätigst die Fahrt mit einem einzigen Tipp.</p></div>
+        <div class="step reveal"><div class="num">3</div><h3>Exportieren</h3><p>Am Monatsende ein PDF erzeugen, an den Steuerberater schicken — fertig.</p></div>
       </div>
     </section>
 
     <section>
-      <div class="band">
+      <div class="band reveal">
         <h2>Schluss mit dem Zettelwirtschaft-Fahrtenbuch</h2>
         <p>Lade TourDex und lass jede Fahrt automatisch erfassen und kategorisieren. Kostenlos bis zu 20 Fahrten pro Monat.</p>
         <div class="cta">
@@ -195,15 +265,15 @@
       <div class="section-label">Die Dexware-Familie</div>
       <h2 class="section-title">Entdecke die ganze Dexware</h2>
       <div class="apps">
-        <a class="app-card" href="https://winterdex.dexware.app" target="_blank" rel="noopener">
+        <a class="app-card reveal" href="https://winterdex.dexware.app" target="_blank" rel="noopener">
           <img src="winterdex-icon.png" alt="WinterDex" />
           <div class="meta">
             <h3>WinterDex</h3>
-            <p>Winterdienst-Nachweis – Räum- & Streueinsätze gerichtsfest dokumentieren.</p>
+            <p>Winterdienst-Nachweis – Räum- &amp; Streueinsätze gerichtsfest dokumentieren.</p>
             <span class="open">Ansehen →</span>
           </div>
         </a>
-        <a class="app-card" href="https://craftdex.dexware.app" target="_blank" rel="noopener">
+        <a class="app-card reveal" href="https://craftdex.dexware.app" target="_blank" rel="noopener">
           <img src="craftlog-icon.png" alt="CraftDex" />
           <div class="meta">
             <h3>CraftDex</h3>
@@ -211,7 +281,7 @@
             <span class="open">Ansehen →</span>
           </div>
         </a>
-        <a class="app-card" href="https://dokudex.dexware.app" target="_blank" rel="noopener">
+        <a class="app-card reveal" href="https://dokudex.dexware.app" target="_blank" rel="noopener">
           <img src="archio-icon.png" alt="DokuDex" />
           <div class="meta">
             <h3>DokuDex</h3>
@@ -219,33 +289,33 @@
             <span class="open">Ansehen →</span>
           </div>
         </a>
-        <a class="app-card" href="https://baumdex-portal.vercel.app" target="_blank" rel="noopener">
+        <a class="app-card reveal" href="https://baumdex-portal.vercel.app" target="_blank" rel="noopener">
           <img src="baumdex-icon.png" alt="BaumDex" />
           <div class="meta">
             <h3>BaumDex</h3>
-            <p>Digitales Baumkataster & Baumkontrolle – Verkehrssicherung mobil erfassen und nachweisen.</p>
+            <p>Digitales Baumkataster &amp; Baumkontrolle – Verkehrssicherung mobil erfassen und nachweisen.</p>
             <span class="open">Ansehen →</span>
           </div>
         </a>
-        <a class="app-card" href="https://schutzdex.dexware.app" target="_blank" rel="noopener">
+        <a class="app-card reveal" href="https://schutzdex.dexware.app" target="_blank" rel="noopener">
           <img src="schutzheld-icon.png" alt="SchutzDex" />
           <div class="meta">
             <h3>SchutzDex</h3>
-            <p>Arbeitsschutz-Unterweisung & Gefährdungsbeurteilung – prüffest dokumentiert.</p>
+            <p>Arbeitsschutz-Unterweisung &amp; Gefährdungsbeurteilung – prüffest dokumentiert.</p>
             <span class="open">Ansehen →</span>
           </div>
         </a>
-        <a class="app-card" href="https://pruefdex.dexware.app" target="_blank" rel="noopener">
+        <a class="app-card reveal" href="https://pruefdex.dexware.app" target="_blank" rel="noopener">
           <img src="pruefdex-icon.png" alt="PrüfDex" />
           <div class="meta">
             <h3>PrüfDex</h3>
-            <p>DGUV-V3-Prüfungen mobil dokumentieren – Protokoll & Plakette per QR.</p>
+            <p>DGUV-V3-Prüfungen mobil dokumentieren – Protokoll &amp; Plakette per QR.</p>
             <span class="open">Ansehen →</span>
           </div>
         </a>
       </div>
       <p style="text-align:center;margin-top:28px">
-        <a class="open" href="https://dexware.app/" target="_blank" rel="noopener">Alle Dexware-Apps auf einen Blick →</a>
+        <a class="open" style="color:var(--accent-soft);font-weight:700" href="https://dexware.app/" target="_blank" rel="noopener">Alle Dexware-Apps auf einen Blick →</a>
       </p>
     </section>
   </div>
@@ -268,5 +338,20 @@
       <p style="margin-top:10px; max-width:560px; margin-left:auto; margin-right:auto;">TourDex hilft beim Dokumentieren und ersetzt keine Steuerberatung. Bitte Einträge vor der Abgabe beim Finanzamt prüfen.</p>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (!('IntersectionObserver' in window)) return;
+      var els = document.querySelectorAll('.reveal');
+      for (var i = 0; i < els.length; i++) els[i].classList.add('pre');
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12 });
+      for (var j = 0; j < els.length; j++) io.observe(els[j]);
+    })();
+  </script>
 </body>
 </html>
