@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" class="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>TourDex — Das smarte Fahrtenbuch</title>
   <meta name="description" content="TourDex zeichnet jede Fahrt automatisch auf und sortiert sie per KI in geschäftlich und privat. Tax-ready PDF-Export, Dashboard und gespeicherte Orte — dein Fahrtenbuch schreibt sich von selbst." />
+  <meta name="theme-color" content="#0a1119" />
   <!-- seo:start -->
   <link rel="canonical" href="https://tourdex.dexware.app/" />
   <meta property="og:type" content="website" />
@@ -22,508 +23,443 @@
   <meta name="twitter:image" content="https://tourdex.dexware.app/og-image.png" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"TourDex","url":"https://tourdex.dexware.app/","description":"TourDex zeichnet jede Fahrt automatisch auf und sortiert sie per KI in geschäftlich und privat. Tax-ready PDF-Export, Dashboard und gespeicherte Orte — dein Fahrtenbuch schreibt sich von selbst.","operatingSystem":"Android","applicationCategory":"BusinessApplication","image":"https://tourdex.dexware.app/og-image.png","inLanguage":"de","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Kostenlos starten, Pro-Abo in der App"},"publisher":{"@type":"Organization","name":"Dexware","url":"https://dexware.app/"}}</script>
   <!-- seo:end -->
-  <link rel="icon" href="favicon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Erkennt das Finanzamt ein elektronisches Fahrtenbuch an?","acceptedAnswer":{"@type":"Answer","text":"Ja, wenn es ordnungsgemäß geführt ist: zeitnah, lückenlos und in geschlossener Form, ohne dass sich Einträge nachträglich frei ändern lassen. Mehr im Ratgeber Fahrtenbuch."}},{"@type":"Question","name":"Muss ich die App jedes Mal starten?","acceptedAnswer":{"@type":"Answer","text":"Nein. Das Tracking läuft im Hintergrund und erkennt Fahrten von selbst. Eine vergessene Fahrt trägst du in Sekunden von Hand nach."}},{"@type":"Question","name":"In welchen Ländern funktioniert TourDex?","acceptedAnswer":{"@type":"Answer","text":"Kilometersätze, Währung und Einheiten passen für Deutschland, Österreich, die Schweiz, Großbritannien und die Niederlande. Die App spricht Deutsch, Englisch, Französisch und Niederländisch."}},{"@type":"Question","name":"Gibt es TourDex auch am PC?","acceptedAnswer":{"@type":"Answer","text":"Ja — im Dexware-Dashboard siehst du Fahrten, Fahrzeuge, Orte und das Fahrtenbuch-PDF im Browser."}},{"@type":"Question","name":"Wo liegen meine Daten?","acceptedAnswer":{"@type":"Answer","text":"Deine Fahrten liegen zuerst auf deinem Gerät. Mit Konto werden sie optional in der EU-Cloud in Frankfurt gesichert. Keine Werbung, kein Tracking durch Dritte — Details in der Datenschutzerklärung."}}]}</script>
+  <link rel="preload" href="assets/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin />
   <style>
+    @font-face { font-family: 'Inter'; src: url('assets/inter-latin-var.woff2') format('woff2');
+      font-weight: 100 900; font-style: normal; font-display: swap; }
     :root {
-      --bg: #0F1923;
-      --surface: #16222E;
-      --surface2: #121C27;
-      --surface-raised: #1C2A38;
       --accent: #3B82F6;
-      --accent-soft: #60A5FA;
-      --glow: rgba(59,130,246,.16);
-      --text: #F1F5F9;
-      --muted: #94A3B8;
-      --faint: #5A6B7B;
-      --hairline: #25323F;
-      --display: 'Fraunces', Georgia, serif;
-      --body: 'DM Sans', system-ui, sans-serif;
+      --on-accent: #fff;
+      --radius: 16px;
+      --wrap: 1120px;
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      background:
-        radial-gradient(1100px 620px at 20% -140px, rgba(59,130,246,.18), transparent 65%),
-        radial-gradient(900px 600px at 95% 5%, rgba(96,165,250,.10), transparent 62%),
-        radial-gradient(800px 520px at 50% 115%, rgba(59,130,246,.08), transparent 60%),
-        var(--bg);
-      background-attachment: fixed;
-      color: var(--text);
-      font-family: var(--body);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
+    html.light {
+      --bg: #ffffff;
+      --bg-soft: color-mix(in oklab, #f7f7f9 96%, var(--accent));
+      --surface: #ffffff;
+      --border: color-mix(in oklab, #e7e7eb 94%, var(--accent));
+      --ink: #0d0d12;
+      --muted: #5c5c69;
+      --accent-text: color-mix(in oklab, var(--accent) 82%, #000);
+      --accent-soft: color-mix(in oklab, var(--accent) 10%, #fff);
+      --card: var(--surface);
+      --shadow: 0 1px 2px rgba(16,16,24,.04), 0 8px 24px -12px rgba(16,16,24,.12);
+      color-scheme: light;
     }
-    body::before {
-      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
-      background-size: 44px 44px;
-      -webkit-mask-image: radial-gradient(900px 620px at 50% 0%, #000 25%, transparent 75%);
-      mask-image: radial-gradient(900px 620px at 50% 0%, #000 25%, transparent 75%);
+    html.dark {
+      --bg: #0a1119;
+      --bg-soft: color-mix(in oklab, #0a1119 96%, #fff);
+      --surface: color-mix(in oklab, #0a1119 93%, #fff);
+      --card: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
+      --border: rgba(255,255,255,.085);
+      --ink: #f6f5f7;
+      --muted: #aaa4ad;
+      --accent-text: color-mix(in oklab, var(--accent) 70%, #fff);
+      --accent-soft: color-mix(in oklab, var(--accent) 18%, transparent);
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px -16px rgba(0,0,0,.6);
+      color-scheme: dark;
     }
-    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
-    a { color: inherit; text-decoration: none; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; -webkit-text-size-adjust: 100%; }
+    body { background: var(--bg); color: var(--ink);
+      font: 400 16px/1.6 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      font-feature-settings: 'cv11', 'ss01'; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: var(--accent-text); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+    img { max-width: 100%; }
+    .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+    @media (max-width: 600px) { .wrap { padding: 0 16px; } }
+    .i { width: 20px; height: 20px; flex: none; }
 
-    /* Sticky glass header */
-    .sitehead {
-      position: sticky; top: 0; z-index: 50;
-      background: rgba(15,25,35,.72);
-      -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-    header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 16px 0;
-    }
-    .brand { display: flex; align-items: center; gap: 12px; font-family: var(--display); font-weight: 700; font-size: 22px; }
-    .mark { width: 38px; height: 38px; filter: drop-shadow(0 6px 16px rgba(59,130,246,.35)); }
-    nav a { color: var(--muted); margin-left: 28px; font-size: 15px; transition: color .2s; }
-    nav a:hover { color: var(--accent-soft); }
+    /* Kopfzeile */
+    .top { position: sticky; top: 0; z-index: 40; background: color-mix(in oklab, var(--bg) 82%, transparent);
+      -webkit-backdrop-filter: saturate(1.4) blur(14px); backdrop-filter: saturate(1.4) blur(14px);
+      border-bottom: 1px solid transparent; transition: border-color .2s; }
+    .top.scrolled { border-bottom-color: var(--border); }
+    .top .wrap { display: flex; align-items: center; gap: 28px; height: 64px; }
+    .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); font-weight: 650; font-size: 17px; letter-spacing: -.01em; }
+    .brand:hover { text-decoration: none; }
+    .brand img { width: 32px; height: 32px; border-radius: 8px; }
+    .brand .wm span { color: var(--accent-text); }
+    .top nav { display: flex; gap: 24px; margin-left: auto; }
+    .top nav a { color: var(--muted); font-size: 14.5px; font-weight: 500; }
+    .top nav a:hover { color: var(--ink); text-decoration: none; }
+    @media (max-width: 760px) { .top nav { display: none; } .top .btn { margin-left: auto; } }
+
+    /* Knöpfe */
+    .btn { display: inline-flex; align-items: center; gap: 8px; height: 48px; padding: 0 22px; border-radius: 12px;
+      font-weight: 600; font-size: 15.5px; background: var(--accent); color: var(--on-accent);
+      box-shadow: 0 1px 0 rgba(255,255,255,.18) inset, 0 6px 20px -8px color-mix(in oklab, var(--accent) 70%, transparent);
+      transition: transform .15s, box-shadow .15s, background .15s; }
+    .btn:hover { text-decoration: none; transform: translateY(-1px);
+      box-shadow: 0 1px 0 rgba(255,255,255,.18) inset, 0 10px 26px -8px color-mix(in oklab, var(--accent) 80%, transparent); }
+    .btn.sm { height: 38px; padding: 0 16px; font-size: 14px; border-radius: 10px; }
+    .btn.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--border); }
+    .btn.ghost:hover { background: var(--bg-soft); }
+    .btn .play { width: 14px; height: 14px; fill: currentColor; stroke: none; }
 
     /* Hero */
-    .hero { position: relative; text-align: center; padding: 90px 0 90px; }
-    .hero::before {
-      content: ''; position: absolute; top: -120px; left: 50%; transform: translateX(-50%);
-      width: 620px; height: 620px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(59,130,246,0.18), transparent 65%);
-      pointer-events: none;
-    }
-    .kicker { color: var(--accent-soft); letter-spacing: 3px; text-transform: uppercase; font-size: 13px; font-weight: 500; }
-    .hero h1 {
-      font-family: var(--display); font-weight: 700; font-size: clamp(44px, 8vw, 86px);
-      line-height: 1.02; margin: 18px 0 22px; letter-spacing: -1px;
-    }
-    .hero h1 .accent {
-      background: linear-gradient(120deg, #93C5FD, var(--accent));
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-    }
-    .hero p { color: var(--muted); font-size: clamp(17px, 2.4vw, 21px); max-width: 620px; margin: 0 auto 40px; }
-    .cta { display: inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 15px 30px; border-radius: 999px; font-weight: 700; font-size: 16px;
-      transition: transform .15s, box-shadow .15s, border-color .15s;
-    }
-    .btn:hover { transform: translateY(-2px); }
-    .btn-primary { background: linear-gradient(135deg, var(--accent-soft), var(--accent)); color: #0A1018;
-      box-shadow: 0 10px 30px rgba(59,130,246,.35); }
-    .btn-primary:hover { box-shadow: 0 14px 38px rgba(59,130,246,.45); }
-    .btn-ghost { background: var(--surface); color: var(--accent-soft); border: 1px solid var(--hairline); }
-    .btn-ghost:hover { border-color: var(--accent); }
-    .hero .hint { color: var(--faint); font-size: 14px; margin-top: 22px; }
-
-    @media (prefers-reduced-motion: no-preference) {
-      .hero > * { opacity: 0; transform: translateY(16px); animation: rise .7s cubic-bezier(.22,.61,.36,1) forwards; }
-      .hero > *:nth-child(2) { animation-delay: .08s; }
-      .hero > *:nth-child(3) { animation-delay: .16s; }
-      .hero > *:nth-child(4) { animation-delay: .24s; }
-      .hero > *:nth-child(5) { animation-delay: .32s; }
-      @keyframes rise { to { opacity: 1; transform: none; } }
+    .hero { position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: -20% -10% auto 40%; height: 120%; z-index: -1; pointer-events: none;
+      background: radial-gradient(closest-side, color-mix(in oklab, var(--accent) 22%, transparent), transparent 75%); }
+    .hero .wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: center; padding-top: 56px; padding-bottom: 40px; }
+    .kicker { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--accent-text);
+      background: var(--accent-soft); padding: 6px 12px; border-radius: 999px; margin-bottom: 22px; }
+    h1 { font-size: clamp(34px, 4.6vw, 54px); line-height: 1.05; font-weight: 750; letter-spacing: -.035em; }
+    h1 em { font-style: normal; color: var(--accent-text); }
+    .sub { margin-top: 20px; font-size: 18px; line-height: 1.6; color: var(--muted); max-width: 520px; }
+    .sub strong { color: var(--ink); font-weight: 600; }
+    .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .hint { margin-top: 12px; font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+    .hint .i { width: 15px; height: 15px; }
+    .ticks { display: flex; flex-wrap: wrap; gap: 10px 20px; margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border); }
+    .ticks li { list-style: none; display: flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 500; }
+    .ticks .i { width: 17px; height: 17px; color: var(--accent-text); }
+    .shots { position: relative; height: 560px; }
+    .shots .phone { position: absolute; }
+    .shots .phone.a { left: 4%; top: 0; z-index: 2; }
+    .shots .phone.b { right: 0; top: 64px; transform: scale(.9); transform-origin: top right; opacity: .96; }
+    @media (max-width: 900px) {
+      .hero .wrap { grid-template-columns: 1fr; gap: 36px; padding-top: 36px; }
+      .shots { height: 380px; max-width: 420px; width: 100%; margin: 0 auto;
+        -webkit-mask-image: linear-gradient(#000 70%, transparent); mask-image: linear-gradient(#000 70%, transparent); }
+      .shots .phone { --pw: 210px; }
+      .shots .phone.a { left: 2%; } .shots .phone.b { top: 40px; }
     }
 
-    /* Sections */
-    section { padding: 70px 0; }
-    .section-label { color: var(--accent-soft); letter-spacing: 2px; text-transform: uppercase; font-size: 13px; font-weight: 500; text-align: center; }
-    .section-title { font-family: var(--display); font-weight: 600; font-size: clamp(30px, 5vw, 46px); text-align: center; margin: 10px 0 50px; }
+    /* Handyrahmen */
+    .phone { --pw: 262px; width: var(--pw); padding: 8px; border-radius: calc(var(--pw) * .16);
+      background: linear-gradient(160deg, #2b2b31, #0e0e11 40%);
+      box-shadow: 0 0 0 1px rgba(255,255,255,.06) inset, 0 0 0 1px rgba(0,0,0,.5), 0 40px 70px -30px rgba(10,10,20,.55), 0 18px 30px -18px rgba(10,10,20,.35); }
+    .screen { position: relative; border-radius: calc(var(--pw) * .13); overflow: hidden; background: var(--bar); padding-top: calc(var(--pw) * .1); }
+    .screen::before { content: ''; position: absolute; top: calc(var(--pw) * .03); left: 50%; transform: translateX(-50%);
+      width: 30%; height: calc(var(--pw) * .075); border-radius: 99px; background: #000; }
+    .screen img { display: block; width: 100%; height: auto; }
 
-    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-    .card {
-      position: relative; overflow: hidden;
-      background: linear-gradient(180deg, var(--surface), var(--surface2));
-      border: 1px solid var(--hairline); border-radius: 24px; padding: 32px;
-      transition: border-color .2s, transform .2s;
+    /* Abschnitte */
+    section { padding: 80px 0; }
+    section.soft { background: var(--bg-soft); }
+    @media (max-width: 700px) {
+      section { padding: 52px 0; }
+      .head { margin-bottom: 24px; }
+      .lead { font-size: 16px; }
+      .sub { font-size: 16.5px; }
+      .cta .btn { flex: 1 1 100%; justify-content: center; }
+      .ticks { gap: 8px 16px; }
+      .rules li { padding: 14px 16px; grid-template-columns: 32px 1fr; gap: 12px; font-size: 14.5px; }
+      .rules .ic { width: 32px; height: 32px; }
     }
-    .card::before { content: ''; position: absolute; inset: 0;
-      background: radial-gradient(360px 180px at 100% 0%, var(--glow), transparent 70%); opacity: .8; }
-    .card > * { position: relative; }
-    .card:hover { border-color: var(--accent); transform: translateY(-4px); }
-    .card .ic { width: 52px; height: 52px; border-radius: 14px; background: var(--surface-raised);
-      border: 1px solid rgba(96,165,250,.2);
-      display: flex; align-items: center; justify-content: center; font-size: 26px; margin-bottom: 18px; }
-    .card h3 { font-family: var(--display); font-weight: 600; font-size: 22px; margin-bottom: 8px; }
-    .card p { color: var(--muted); font-size: 15px; }
+    .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .02em; color: var(--accent-text); margin-bottom: 10px; }
+    h2 { font-size: clamp(27px, 3.4vw, 38px); line-height: 1.12; font-weight: 720; letter-spacing: -.03em; max-width: 760px; }
+    .lead { margin-top: 14px; font-size: 17px; color: var(--muted); max-width: 620px; }
+    .lead strong { color: var(--ink); font-weight: 600; }
+    .head { margin-bottom: 40px; }
 
-    /* How it works */
-    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
-    .step { text-align: center; padding: 16px; }
-    .step .num { font-family: var(--display); font-weight: 700; font-size: 44px;
-      background: linear-gradient(120deg, #93C5FD, var(--accent));
-      -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .step h3 { font-family: var(--display); font-weight: 600; font-size: 20px; margin: 8px 0 6px; }
-    .step p { color: var(--muted); font-size: 15px; }
+    /* Pflicht */
+    .duty { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: start; }
+    .rules { list-style: none; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .rules li { display: grid; grid-template-columns: 36px 1fr; gap: 14px; padding: 18px 22px; border-top: 1px solid var(--border); font-size: 15px; color: var(--muted); }
+    .rules li:first-child { border-top: 0; }
+    .rules b { display: block; color: var(--ink); font-weight: 600; font-size: 15.5px; margin-bottom: 1px; }
+    .ic { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent-text); }
+    @media (max-width: 860px) { .duty { grid-template-columns: 1fr; gap: 28px; } }
 
-    /* Download CTA band */
-    .band { position: relative; overflow: hidden;
-      background: linear-gradient(135deg, rgba(59,130,246,0.16), var(--surface));
-      border: 1px solid rgba(96,165,250,.3); border-radius: 28px; padding: 56px 32px; text-align: center;
-      box-shadow: 0 24px 60px rgba(0,0,0,.35); }
-    .band::before { content: ''; position: absolute; inset: 0;
-      background: radial-gradient(500px 240px at 50% 0%, rgba(96,165,250,.14), transparent 70%); }
-    .band > * { position: relative; }
-    .band h2 { font-family: var(--display); font-weight: 600; font-size: clamp(28px, 4.5vw, 40px); margin-bottom: 14px; }
-    .band p { color: var(--muted); max-width: 520px; margin: 0 auto 32px; }
+    /* Funktionen */
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .feature { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); }
+    .feature .ic { margin-bottom: 16px; }
+    .feature h3 { font-size: 16.5px; font-weight: 640; letter-spacing: -.01em; margin-bottom: 6px; }
+    .feature p { font-size: 15px; color: var(--muted); line-height: 1.55; }
+    @media (max-width: 900px) { .features { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .features { grid-template-columns: 1fr; gap: 10px; }
+      .feature { padding: 16px; display: grid; grid-template-columns: 36px 1fr; gap: 0 14px; }
+      .feature .ic { margin: 0; grid-row: span 2; } .feature p { font-size: 14.5px; } }
 
-    /* More apps (cross-promo) */
-    .apps { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 760px; margin: 0 auto; }
-    .app-card { position: relative; overflow: hidden; display: flex; align-items: center; gap: 18px;
-      background: linear-gradient(180deg, var(--surface), var(--surface2));
-      border: 1px solid var(--hairline); border-radius: 24px; padding: 22px 24px;
-      transition: border-color .2s, transform .2s; }
-    .app-card::before { content: ''; position: absolute; inset: 0;
-      background: radial-gradient(300px 140px at 100% 0%, var(--glow), transparent 70%); opacity: .7; }
-    .app-card > * { position: relative; }
-    .app-card:hover { border-color: var(--accent); transform: translateY(-4px); }
-    .app-card img { width: 60px; height: 60px; border-radius: 15px; flex-shrink: 0;
-      box-shadow: 0 4px 14px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.08); }
-    .app-card .meta { min-width: 0; }
-    .app-card h3 { font-family: var(--display); font-weight: 600; font-size: 20px; margin-bottom: 4px; }
-    .app-card p { color: var(--muted); font-size: 14px; margin-bottom: 10px; }
-    .app-card .open { color: var(--accent-soft); font-weight: 700; font-size: 14px; }
+    /* Ablauf */
+    .flow { display: grid; grid-template-columns: 1fr auto; gap: 72px; align-items: center; }
+    .steps { list-style: none; counter-reset: s; margin-top: 32px; }
+    .steps li { counter-increment: s; position: relative; padding: 0 0 26px 56px; }
+    .steps li:last-child { padding-bottom: 0; }
+    .steps li::before { content: counter(s); position: absolute; left: 0; top: -2px; width: 36px; height: 36px; border-radius: 50%;
+      display: grid; place-items: center; font-weight: 650; font-size: 15px; background: var(--accent); color: var(--on-accent); }
+    .steps li:not(:last-child)::after { content: ''; position: absolute; left: 17.5px; top: 40px; bottom: 6px; width: 1px; background: var(--border); }
+    .steps b { display: block; font-size: 17px; font-weight: 640; margin-bottom: 4px; }
+    .steps p { color: var(--muted); font-size: 15.5px; }
+    .flow .phone { --pw: 280px; }
+    @media (max-width: 860px) { .flow { grid-template-columns: 1fr; } .flow > div:last-child { display: none; } .steps { margin-top: 24px; } }
 
-    /* Dexware Suite */
-    .suite { background: linear-gradient(180deg, rgba(59,130,246,.12), var(--surface)); border: 2px solid var(--accent);
-      border-radius: 22px; padding: 34px 30px; max-width: 900px; margin: 30px auto 0; box-shadow: 0 0 0 1px rgba(96,165,250,.3), 0 24px 60px rgba(59,130,246,.16); }
-    .suite-pill { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
-      color: #0A1018; background: var(--accent-soft); padding: 6px 14px; border-radius: 999px; }
-    .suite h3.st { font-family: var(--display); font-size: 26px; font-weight: 600; margin-top: 16px; }
-    .suite .sl { color: var(--muted); font-size: 15px; margin-top: 10px; }
-    .suite-prices { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
-    @media (max-width: 700px) { .suite-prices { grid-template-columns: 1fr; } }
-    .sp { background: var(--surface); border: 1px solid var(--hairline); border-radius: 16px; padding: 22px; position: relative; }
-    .sp.best { border-color: var(--accent); box-shadow: 0 12px 34px rgba(59,130,246,.2); }
-    .sp-badge { position: absolute; top: -12px; right: 16px; font-size: 11.5px; font-weight: 700;
-      color: #052e12; background: #4ADE80; padding: 4px 11px; border-radius: 999px; }
-    .sp-name { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
-    .sp.best .sp-name { color: var(--accent-soft); }
-    .sp-strike { color: var(--muted); font-size: 14px; text-decoration: line-through; margin-top: 10px; }
-    .sp-amount { font-family: var(--display); font-size: 32px; font-weight: 600; }
-    .sp-amount small { font-size: 14px; font-weight: 400; color: var(--muted); }
-    .sp-note { color: var(--muted); font-size: 13px; margin-top: 4px; }
-    .suite-icons { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
-    .suite-icons img { width: 42px; height: 42px; border-radius: 11px; border: 1px solid var(--hairline); background: var(--surface); }
-    .suite-list { list-style: none; margin-top: 18px; }
-    .suite-list li { font-size: 14.5px; padding: 5px 0 5px 22px; position: relative; color: var(--text); }
-    .suite-list li::before { content: "★"; color: var(--accent-soft); position: absolute; left: 0; }
-    .suite-how { color: var(--muted); font-size: 13.5px; margin-top: 18px; margin-bottom: 20px; }
+    /* Preise */
+    .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
+    .plan { position: relative; display: flex; flex-direction: column; min-width: 0; background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); }
+    .plan.pro { border-color: color-mix(in oklab, var(--accent) 55%, var(--border)); box-shadow: 0 0 0 1px color-mix(in oklab, var(--accent) 55%, transparent), var(--shadow); }
+    .plan .badge { position: absolute; top: -11px; left: 28px; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 99px; background: var(--accent); color: var(--on-accent); }
+    .plan h3 { font-size: 15px; font-weight: 600; color: var(--muted); }
+    .price { margin-top: 10px; font-size: 38px; font-weight: 720; letter-spacing: -.03em; line-height: 1.1; }
+    .price small { font-size: 15px; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+    .per { font-size: 14px; color: var(--muted); margin-top: 4px; min-height: 22px; }
+    .plan ul { list-style: none; margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--border); display: grid; gap: 10px; }
+    .plan li { display: flex; gap: 10px; font-size: 15px; }
+    .plan li .i { width: 18px; height: 18px; margin-top: 2px; color: var(--accent-text); }
+    .plan.suite { color: #f4f4f6; border: 1px solid transparent;
+      background: linear-gradient(180deg, #121218, #0b0b0f) padding-box, linear-gradient(140deg, #3b82f6, #8b5cf6 55%, var(--accent)) border-box; }
+    .plan.suite h3, .plan.suite .per, .plan.suite .price small { color: #a3a3ad; }
+    .plan.suite ul { border-color: rgba(255,255,255,.1); }
+    .plan.suite li .i { color: #f4f4f6; }
+    .icons { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 22px; }
+    .icons img { width: 26px; height: 26px; border-radius: 7px; }
+    .fine { margin-top: 20px; font-size: 13.5px; color: var(--muted); }
+    @media (max-width: 960px) { .plans { grid-template-columns: 1fr; max-width: 480px; } }
 
-    /* Scroll reveal */
-    .reveal.pre { opacity: 0; transform: translateY(18px); }
-    .reveal.in { opacity: 1; transform: none; transition: opacity .6s ease, transform .6s cubic-bezier(.22,.61,.36,1); }
-    .features .reveal.in:nth-child(2), .apps .reveal.in:nth-child(2), .steps .reveal.in:nth-child(2) { transition-delay: .07s; }
-    .features .reveal.in:nth-child(3), .apps .reveal.in:nth-child(3), .steps .reveal.in:nth-child(3) { transition-delay: .14s; }
-    .features .reveal.in:nth-child(4), .apps .reveal.in:nth-child(4) { transition-delay: .21s; }
-    .features .reveal.in:nth-child(5), .apps .reveal.in:nth-child(5) { transition-delay: .28s; }
-    .features .reveal.in:nth-child(6), .apps .reveal.in:nth-child(6) { transition-delay: .35s; }
+    /* FAQ */
+    .faq { display: grid; grid-template-columns: .8fr 1.2fr; gap: 56px; align-items: start; }
+    .faq details { border-bottom: 1px solid var(--border); }
+    .faq details:first-child { border-top: 1px solid var(--border); }
+    .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 16px; align-items: center;
+      padding: 18px 2px; font-weight: 600; font-size: 16px; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary .i { color: var(--muted); transition: transform .2s; }
+    .faq details[open] summary .i { transform: rotate(180deg); }
+    .faq .a { padding: 0 2px 20px; color: var(--muted); font-size: 15.5px; max-width: 640px; }
+    .ask { margin-top: 18px; color: var(--muted); font-size: 15px; display: flex; align-items: center; gap: 8px; }
+    @media (max-width: 860px) { .faq { grid-template-columns: 1fr; gap: 24px; } }
 
-    /* Footer */
-    footer { border-top: 1px solid var(--hairline); padding: 40px 0; text-align: center; color: var(--faint); font-size: 14px; margin-top: 40px; position: relative; z-index: 1; }
-    footer a { color: var(--muted); margin: 0 12px; }
-    footer a:hover { color: var(--accent-soft); }
-    .foot-brand { font-family: var(--display); font-weight: 600; color: var(--text); margin-bottom: 12px; font-size: 18px; }
-    .flags { color: var(--faint); font-size: 14px; margin-top: 10px; }
+    /* Familie */
+    .family { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-top: 32px; }
+    .family a { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 6px 14px; border-radius: 14px;
+      color: var(--ink); text-align: center; transition: background .15s; }
+    .family a:hover { background: var(--surface); text-decoration: none; box-shadow: var(--shadow); }
+    .family img { width: 44px; height: 44px; border-radius: 11px; }
+    .family b { font-size: 13.5px; font-weight: 600; line-height: 1.2; }
+    .family small { font-size: 12px; color: var(--muted); line-height: 1.3; }
+    .family-row { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; }
+    @media (max-width: 900px) { .family { grid-template-columns: repeat(4, 1fr); } }
+    @media (max-width: 480px) { .family { grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 20px; } .family a { padding: 10px 2px; gap: 6px; }
+      .family img { width: 40px; height: 40px; } .family b { font-size: 11.5px; } .family small { display: none; } }
+
+    /* Prüfpunkte (optional) */
+    .points { margin-top: 16px; padding: 22px 24px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); }
+    .points p { font-size: 15px; color: var(--muted); margin-bottom: 14px; }
+    .points p b { color: var(--ink); font-weight: 600; margin-right: 4px; }
+    .points ol { list-style: none; counter-reset: p; display: flex; flex-wrap: wrap; gap: 8px; }
+    .points li { counter-increment: p; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500;
+      padding: 5px 12px 5px 5px; border-radius: 99px; background: var(--bg-soft); border: 1px solid var(--border); }
+    .points li::before { content: counter(p); width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center;
+      font-size: 12px; font-weight: 650; background: var(--accent-soft); color: var(--accent-text); }
+    @media (max-width: 600px) { .points { padding: 16px; } .points li { font-size: 13px; } }
+
+    /* Fußzeile */
+    footer { border-top: 1px solid var(--border); padding: 32px 0 40px; font-size: 14px; color: var(--muted); }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; justify-content: space-between; }
+    footer nav { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+    footer .note { display: block; font-size: 13px; line-height: 1.55; margin-bottom: 20px; max-width: var(--wrap); }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--ink); }
+
+    /* Handy: Feinschliff (muss nach den Grundregeln stehen) */
+    @media (max-width: 700px) {
+      .duty { gap: 22px; }
+      .plan { padding: 22px; }
+      .plan ul { margin-top: 16px; padding-top: 14px; gap: 7px; }
+      .price { font-size: 34px; }
+      .plans { gap: 20px; }
+      .faq summary { padding: 15px 2px; font-size: 15.5px; }
+      .rules li { padding: 13px 16px; }
+      .family-row .btn { order: 2; }
+    }
+
+    /* Einblenden beim Scrollen — nur mit JS und ohne reduzierte Bewegung */
+    .js .rv { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); }
+    .js .rv.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .js .rv { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
   </style>
+  <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
-  <div class="sitehead">
+  <header class="top">
     <div class="wrap">
-      <header>
-        <div class="brand">
-          <svg class="mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="100" height="100" rx="24" fill="#16222E"/>
-            <path d="M26 70 C26 50 50 56 50 40" stroke="#3B82F6" stroke-width="9" stroke-linecap="round" stroke-dasharray="2 16" fill="none"/>
-            <circle cx="26" cy="70" r="6" fill="#3B82F6"/>
-            <path d="M62 26 a16 16 0 0 0 -16 16 c0 12 16 26 16 26 s16 -14 16 -26 a16 16 0 0 0 -16 -16 z" fill="#3B82F6"/>
-            <circle cx="62" cy="42" r="6" fill="#16222E"/>
-          </svg>
-          TourDex
-        </div>
-        <nav>
-          <a href="#features">Features</a>
-          <a href="#so-gehts">So geht's</a>
-          <a href="ratgeber-fahrtenbuch.html">Ratgeber</a>
-          <a href="#download">Download</a>
-        </nav>
-      </header>
+      <a class="brand" href="/" aria-label="TourDex Startseite"><img src="assets/apps/tourdex.webp" alt="" width="32" height="32" /><span class="wm">Tour<span>Dex</span></span></a>
+      <nav aria-label="Seitennavigation"><a href="#funktionen">Funktionen</a><a href="#preise">Preise</a><a href="#faq">FAQ</a><a href="ratgeber-fahrtenbuch.html">Ratgeber</a></nav>
+      <a class="btn sm" href="https://play.google.com/store/apps/details?id=com.routelog.app" target="_blank" rel="noopener">App laden</a>
     </div>
-  </div>
+  </header>
 
-  <div class="wrap">
+  <main>
     <div class="hero">
-      <div class="kicker">Das smarte Fahrtenbuch</div>
-      <h1>Jeder Kilometer, <span class="accent">automatisch erfasst.</span></h1>
-      <p>TourDex zeichnet deine Fahrten im Hintergrund auf und sortiert sie per KI in geschäftlich und privat. Du bestätigst mit einem Tipp — am Monatsende exportierst du ein finanzamt-taugliches PDF.</p>
-      <div class="cta" id="download">
-        <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.routelog.app" target="_blank" rel="noopener">Google Play</a>
+      <div class="wrap">
+        <div>
+          <span class="kicker">Das smarte Fahrtenbuch · DE · AT · CH · UK · NL</span>
+          <h1>Jeder Kilometer, <em>automatisch erfasst.</em></h1>
+          <p class="sub">TourDex zeichnet deine Fahrten im Hintergrund auf und sortiert sie per KI in geschäftlich und privat. Du bestätigst mit einem Tipp — am Monatsende exportierst du ein <strong>finanzamt-taugliches PDF</strong>.</p>
+          <div class="cta">
+            <a class="btn" id="store-link" href="https://play.google.com/store/apps/details?id=com.routelog.app" target="_blank" rel="noopener"><svg class="play" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17a1 1 0 0 0 1.5.86l14-8.5a1 1 0 0 0 0-1.72l-14-8.5A1 1 0 0 0 6 3.5z"/></svg>Kostenlos bei Google Play</a>
+            <a class="btn ghost" href="#ablauf">So funktioniert's</a>
+          </div>
+          <p class="hint"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="20" x="5" y="2" rx="2" ry="2" /><path d="M12 18h.01" /></svg>Android jetzt · iPhone & iPad bald</p>
+          <ul class="ticks"><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>Automatisches GPS-Tracking</li><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>KI-Kategorisierung</li><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>PDF fürs Finanzamt</li></ul>
+        </div>
+        <div class="shots" aria-label="Screenshots der App">
+          <div class="phone a"><div class="screen" style="--bar:#0f1923"><img src="assets/shots/hero-1.webp" width="600" height="1022" alt="TourDex: automatisch erkannte Fahrten mit Kategorie" decoding="async"></div></div>
+          <div class="phone b"><div class="screen" style="--bar:#0f1923"><img src="assets/shots/hero-2.webp" width="600" height="1022" alt="TourDex: Fahrtenbuch des Monats mit PDF-Export" decoding="async"></div></div>
+        </div>
       </div>
-      <div class="hint">Für Selbstständige, Freiberufler &amp; kleine Betriebe im DACH-Raum — finanzamt-taugliche Fahrtenbücher für Deutschland, Österreich und die Schweiz.</div>
     </div>
-  </div>
 
-  <div class="wrap">
-    <section id="features">
-      <div class="section-label">Was drin ist</div>
-      <h2 class="section-title">Dein Fahrtenbuch schreibt sich selbst</h2>
-      <div class="features">
-        <div class="card reveal"><div class="ic">📍</div><h3>Automatisches GPS-Tracking</h3><p>Fahrten starten und stoppen von selbst, sobald du losfährst — auch wenn die App geschlossen ist. Keine Knöpfe, kein Vergessen.</p></div>
-        <div class="card reveal"><div class="ic">🤖</div><h3>KI-Kategorisierung</h3><p>Smarte Einordnung in geschäftlich, Arbeitsweg oder privat — aus Ziel, Uhrzeit, Wochentag und deinen Orten. Du bestätigst mit einem Tipp.</p></div>
-        <div class="card reveal"><div class="ic">📄</div><h3>Tax-ready PDF-Export</h3><p>Am Monatsende ein sauberes, prüfsicheres PDF, das Steuerberater und Finanzamt akzeptieren — lokalisiert und vollständig.</p></div>
-        <div class="card reveal"><div class="ic">📊</div><h3>Dashboard</h3><p>Gesamt-Kilometer, geschäftliche km und deine geschätzte Steuerersparnis auf einen Blick.</p></div>
-        <div class="card reveal"><div class="ic">⭐</div><h3>Gespeicherte Orte</h3><p>Zuhause, Büro und Stammkunden hinterlegen — TourDex macht daraus noch treffsicherere Vorschläge.</p></div>
-        <div class="card reveal"><div class="ic">🚐</div><h3>Mehrere Fahrzeuge</h3><p>Verwalte mehrere Fahrzeuge mit eigenem Kilometerstand und ordne jede Fahrt dem richtigen zu.</p></div>
-        <div class="card reveal"><div class="ic">✍️</div><h3>Manuelle Erfassung</h3><p>Eine Fahrt mal nicht getrackt? Trag sie in Sekunden von Hand nach — als Rückfalloption immer dabei.</p></div>
-        <div class="card reveal"><div class="ic">🌍</div><h3>Länder-genau</h3><p>Kilometersätze, Währung und Einheiten für 🇩🇪 DE, 🇦🇹 AT, 🇨🇭 CH, 🇬🇧 UK und 🇳🇱 NL.</p></div>
-        <div class="card reveal"><div class="ic">🗣️</div><h3>Komplett mehrsprachig</h3><p>Deutsch, Englisch, Französisch und Niederländisch — mit automatischer Geräteerkennung und Umschalter in der App.</p></div>
-        <div class="card reveal"><div class="ic">🔒</div><h3>Privat &amp; lokal-first</h3><p>Deine Fahrten liegen auf dem Gerät — mit Konto optional verschlüsselt in der EU-Cloud gesichert. Keine Werbung, kein Tracking durch Dritte.</p></div>
-        <div class="card reveal"><div class="ic">☁️</div><h3>Konto &amp; Cloud-Backup</h3><p>Optional anmelden und deine Fahrten, Fahrzeuge und Orte sicher in der Cloud (EU/Frankfurt) sichern — geräteübergreifend, jederzeit wieder löschbar.</p></div>
-      </div>
-    </section>
-
-    <section id="so-gehts">
-      <div class="section-label">So geht's</div>
-      <h2 class="section-title">In drei Schritten zum Fahrtenbuch</h2>
-      <div class="steps">
-        <div class="step reveal"><div class="num">1</div><h3>Losfahren</h3><p>TourDex erkennt die Fahrt automatisch und zeichnet Start, Ziel, Strecke und Zeit auf.</p></div>
-        <div class="step reveal"><div class="num">2</div><h3>Bestätigen</h3><p>Die KI schlägt geschäftlich oder privat vor — du bestätigst die Fahrt mit einem einzigen Tipp.</p></div>
-        <div class="step reveal"><div class="num">3</div><h3>Exportieren</h3><p>Am Monatsende ein PDF erzeugen, an den Steuerberater schicken — fertig.</p></div>
-      </div>
-    </section>
-
-    <section>
-      <div class="band reveal">
-        <h2>Schluss mit dem Zettelwirtschaft-Fahrtenbuch</h2>
-        <p>Lade TourDex und lass jede Fahrt automatisch erfassen und kategorisieren. Kostenlos bis zu 20 Fahrten pro Monat.</p>
-        <div class="cta">
-          <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.routelog.app" target="_blank" rel="noopener">Google Play</a>
+    <section class="soft" id="pflicht">
+      <div class="wrap duty">
+        <div class="rv">
+          <p class="eyebrow">Ordnungsgemäß</p>
+          <h2>Ein Fahrtenbuch zählt nur, wenn es ordnungsgemäß ist</h2>
+          <p class="lead">Wer den Firmenwagen auch privat nutzt, kann statt der 1-%-Regelung den tatsächlichen Anteil per Fahrtenbuch nachweisen — und oft Geld sparen. Für Selbstständige, Freiberufler und kleine Betriebe.</p>
         </div>
-      </div>
-    </section>
-  </div>
-
-  <div class="wrap">
-    <section id="dashboard">
-      <div class="section-label">Web-Dashboard</div>
-      <h2 class="section-title">TourDex auch am PC</h2>
-      <div class="suite">
-        <span class="suite-pill">💻 Neu: Web-Dashboard — inklusive</span>
-        <p style="margin:10px 0 16px;opacity:.85">Fahrten, Fahrzeuge, Orte und das Fahrtenbuch-PDF — direkt im Browser. Anmeldung mit deinem App-Konto — per Google oder E-Mail + Passwort.</p>
-        <a class="btn btn-primary" href="https://dashboard.dexware.app/app/tourdex">Dashboard öffnen →</a>
-      </div>
-    </section>
-
-    <section id="suite">
-      <div class="section-label">Dexware Suite</div>
-      <h2 class="section-title">Ein Abo für alle Apps</h2>
-      <div class="suite">
-        <span class="suite-pill">Dexware Suite — ein Abo, alle Apps</span>
-        <h3 class="st">Alle 9 Dexware-Apps. Ein Abo.</h3>
-        <p class="sl">
-          Die Suite kostet so viel wie unsere teuerste Einzel-App — und schaltet <b>alle</b> Dexware-Apps
-          auf allen deinen Geräten frei. Neue Apps kommen automatisch dazu, ohne Aufpreis.
-        </p>
-        <div class="suite-prices">
-          <div class="sp">
-            <div class="sp-name">Monatlich</div>
-            <div class="sp-strike">über 90 € — alle Apps einzeln</div>
-            <div class="sp-amount">29,99 € <small>/ Monat</small></div>
-            <div class="sp-note">Der Preis unserer teuersten Einzel-App — über 65 % günstiger als alles einzeln.</div>
-          </div>
-          <div class="sp best">
-            <span class="sp-badge">4 Monate geschenkt · −33 %</span>
-            <div class="sp-name">Jährlich</div>
-            <div class="sp-strike">statt 359,88 € (12 × 29,99 €)</div>
-            <div class="sp-amount">239,99 € <small>/ Jahr</small></div>
-            <div class="sp-note">Entspricht 20,00 € im Monat — du zahlst nur 8 von 12 Monaten.</div>
-          </div>
-        </div>
-        <div class="suite-icons">
-          <img src="gurtdex-icon.png" alt="GurtDex" title="GurtDex" />
-          <img src="toredex-icon.png" alt="ToreDex" title="ToreDex" />
-          <img src="geruestdex-icon.png" alt="GerüstDex" title="GerüstDex" />
-          <img src="regaldex-icon.png" alt="RegalDex" title="RegalDex" />
-          <img src="leiterdex-icon.png" alt="LeiterDex" title="LeiterDex" />
-          <img src="feuerdex-icon.png" alt="FeuerDex" title="FeuerDex" />
-          <img src="spieldex-icon.png" alt="SpielDex" title="SpielDex" />
-          <img src="kfzdex-icon.png" alt="KfzDex" title="KfzDex" />
-          <img src="pruefdex-icon.png" alt="PrüfDex" title="PrüfDex" />
-          <img src="schutzheld-icon.png" alt="SchutzDex" title="SchutzDex" />
-          <img src="baumdex-icon.png" alt="BaumDex" title="BaumDex" />
-          <img src="winterdex-icon.png" alt="WinterDex" title="WinterDex" />
-          <img src="routelog-icon.png" alt="TourDex" title="TourDex" />
-          <img src="craftlog-icon.png" alt="CraftDex" title="CraftDex" />
-          <img src="archio-icon.png" alt="DokuDex" title="DokuDex" />
-        </div>
-        <ul class="suite-list">
-          <li>Alle 15 Apps inklusive — vom Fahrtenbuch bis zum Winterdienst</li>
-          <li>Alle zukünftigen Dexware-Apps automatisch dabei</li>
-          <li>Einmal kaufen — in jeder App freigeschaltet</li>
-          <li>Jederzeit kündbar</li>
+        <ul class="rules rv">
+          <li><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg></span><span><b>Zeitnah</b>Einträge entstehen mit der Fahrt — nicht Wochen später aus der Erinnerung.</span></li>
+          <li><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="3" /><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15" /><circle cx="18" cy="5" r="3" /></svg></span><span><b>Lückenlos</b>Jede Fahrt wird erfasst, betrieblich wie privat.</span></li>
+          <li><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg></span><span><b>In geschlossener Form</b>Keine losen Zettel und keine frei änderbare Excel-Tabelle.</span></li>
+          <li><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" /><path d="m9 13 2 2 4-4" /></svg></span><span><b>Pflichtangaben</b>Datum, Kilometerstand, Ziel und Zweck je betrieblicher Fahrt.</span></li>
         </ul>
-        <p class="suite-how">Erhältlich direkt in jeder Dexware-App: einfach in der App auf „Pro werden" tippen und die Dexware Suite wählen.</p>
-        <a href="https://dexware.app/" target="_blank" rel="noopener" class="btn btn-primary">Mehr zur Dexware Suite →</a>
-        <p class="suite-how" style="margin-bottom:0">💻 Fürs Web gibt's einen Haupteinstieg: <a href="https://dashboard.dexware.app" style="color:inherit">dashboard.dexware.app</a> — die Übersicht aller App-Dashboards. Dort wählst du einfach die App, deren Dashboard du öffnen willst.</p>
       </div>
     </section>
 
-    <section id="apps">
-      <div class="section-label">Die Dexware-Familie</div>
-      <h2 class="section-title">Entdecke die ganze Dexware</h2>
-      <div class="apps">
-        <a class="app-card reveal" href="https://gurtdex.dexware.app" target="_blank" rel="noopener">
-          <img src="gurtdex-icon.png" alt="GurtDex" />
-          <div class="meta">
-            <h3>GurtDex</h3>
-            <p>PSA gegen Absturz prüfen nach DGUV 312-906 / EN 365 — mit Ablegereife-Wächter, Prüfbericht als PDF.</p>
-            <span class="open">Ansehen →</span>
-          </div>
-        </a>
-        <a class="app-card reveal" href="https://toredex.dexware.app" target="_blank" rel="noopener">
-          <img src="toredex-icon.png" alt="ToreDex" />
-          <div class="meta">
-            <h3>ToreDex</h3>
-            <p>Tor- &amp; Türprüfung nach ASR A1.7 / DGUV 208-022 — Prüfungen &amp; Mängel dokumentieren, Prüfbericht als PDF.</p>
-            <span class="open">Ansehen →</span>
-          </div>
-        </a>
-        <a class="app-card reveal" href="https://geruestdex.dexware.app" target="_blank" rel="noopener">
-          <img src="geruestdex-icon.png" alt="GerüstDex" />
-          <div class="meta">
-            <h3>GerüstDex</h3>
-            <p>Gerüstprüfung nach TRBS 2121-1 — Prüfungen &amp; Mängel dokumentieren, Prüfbericht als PDF.</p>
-            <span class="open">Ansehen →</span>
-          </div>
-        </a>
-        <a class="app-card reveal" href="https://regaldex.dexware.app" target="_blank" rel="noopener">
-          <img src="regaldex-icon.png" alt="RegalDex" />
-          <div class="meta">
-            <h3>RegalDex</h3>
-            <p>Regalinspektion nach DIN EN 15635 — Schäden im Ampelverfahren, Prüfbericht als PDF.</p>
-            <span class="open">Ansehen →</span>
-          </div>
-        </a>
-        <a class="app-card reveal" href="https://leiterdex.dexware.app" target="_blank" rel="noopener">
-          <img src="leiterdex-icon.png" alt="LeiterDex" />
-          <div class="meta">
-            <h3>LeiterDex</h3>
-            <p>Leitern- &amp; Tritte-Prüfung nach BetrSichV &amp; DGUV 208-016 — Prüfbericht als PDF.</p>
-            <span class="open">Ansehen →</span>
-          </div>
-        </a>
-        <a class="app-card reveal" href="https://feuerdex.dexware.app" target="_blank" rel="noopener">
-          <img src="feuerdex-icon.png" alt="FeuerDex" />
-          <div class="meta">
-            <h3>FeuerDex</h3>
-            <p>Feuerlöscher-Prüfung nach ASR A2.2 &amp; DIN 14406-4 — Prüfbericht als PDF.</p>
-            <span class="open">Ansehen →</span>
-          </div>
-        </a>
-        <a class="app-card reveal" href="https://spieldex.dexware.app" target="_blank" rel="noopener">
-          <img src="spieldex-icon.png" alt="SpielDex" />
-          <div class="meta">
-            <h3>SpielDex</h3>
-            <p>Spielplatzkontrolle nach DIN EN 1176 — Geräte prüfen, Mängel dokumentieren, Kontrollbuch als PDF.</p>
-            <span class="open">Ansehen →</span>
-          </div>
-        </a>
-        <a class="app-card reveal" href="https://kfzdex.dexware.app" target="_blank" rel="noopener">
-          <img src="kfzdex-icon.png" alt="KfzDex" />
-          <div class="meta">
-            <h3>KfzDex</h3>
-            <p>Fuhrpark-Verwaltung – UVV-Prüfung, Führerscheinkontrolle &amp; Fristen prüffest im Griff.</p>
-            <span class="open">Ansehen →</span>
-          </div>
-        </a>
-        <a class="app-card reveal" href="https://winterdex.dexware.app" target="_blank" rel="noopener">
-          <img src="winterdex-icon.png" alt="WinterDex" />
-          <div class="meta">
-            <h3>WinterDex</h3>
-            <p>Winterdienst-Nachweis – Räum- &amp; Streueinsätze gerichtsfest dokumentieren.</p>
-            <span class="open">Ansehen →</span>
-          </div>
-        </a>
-        <a class="app-card reveal" href="https://play.google.com/store/apps/details?id=com.craftlog.app" target="_blank" rel="noopener">
-          <img src="craftlog-icon.png" alt="CraftDex" />
-          <div class="meta">
-            <h3>CraftDex</h3>
-            <p>Projekt-Tagebuch für Heimwerker – Schritte, Material und Stunden im Blick.</p>
-            <span class="open">Ansehen →</span>
-          </div>
-        </a>
-        <a class="app-card reveal" href="https://play.google.com/store/apps/details?id=com.archio.app" target="_blank" rel="noopener">
-          <img src="archio-icon.png" alt="DokuDex" />
-          <div class="meta">
-            <h3>DokuDex</h3>
-            <p>Dokumente scannen und per KI verstehen – Belege, Verträge und mehr.</p>
-            <span class="open">Ansehen →</span>
-          </div>
-        </a>
-        <a class="app-card reveal" href="https://play.google.com/store/apps/details?id=com.baumdex.app" target="_blank" rel="noopener">
-          <img src="baumdex-icon.png" alt="BaumDex" />
-          <div class="meta">
-            <h3>BaumDex</h3>
-            <p>Digitales Baumkataster &amp; Baumkontrolle – Verkehrssicherung mobil erfassen und nachweisen.</p>
-            <span class="open">Ansehen →</span>
-          </div>
-        </a>
-        <a class="app-card reveal" href="https://schutzdex.dexware.app" target="_blank" rel="noopener">
-          <img src="schutzheld-icon.png" alt="SchutzDex" />
-          <div class="meta">
-            <h3>SchutzDex</h3>
-            <p>Arbeitsschutz-Unterweisung &amp; Gefährdungsbeurteilung – prüffest dokumentiert.</p>
-            <span class="open">Ansehen →</span>
-          </div>
-        </a>
-        <a class="app-card reveal" href="https://pruefdex.dexware.app" target="_blank" rel="noopener">
-          <img src="pruefdex-icon.png" alt="PrüfDex" />
-          <div class="meta">
-            <h3>PrüfDex</h3>
-            <p>DGUV-V3-Prüfungen mobil dokumentieren – Protokoll &amp; Plakette per QR.</p>
-            <span class="open">Ansehen →</span>
-          </div>
-        </a>
+    <section id="funktionen">
+      <div class="wrap">
+        <div class="head rv">
+          <p class="eyebrow">Funktionen</p>
+          <h2>Dein Fahrtenbuch schreibt sich selbst</h2>
+          <p class="lead">Losfahren, bestätigen, exportieren — den Rest erledigt TourDex.</p>
+        </div>
+        <div class="features">
+          <article class="feature rv"><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11" /></svg></span><h3>Automatisches GPS-Tracking</h3><p>Fahrten starten und stoppen von selbst — auch wenn die App geschlossen ist.</p></article>
+          <article class="feature rv"><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" /><path d="M20 3v4" /><path d="M22 5h-4" /><path d="M4 17v2" /><path d="M5 18H3" /></svg></span><h3>KI-Kategorisierung</h3><p>Geschäftlich, Arbeitsweg oder privat — aus Ziel, Uhrzeit, Wochentag und deinen Orten vorgeschlagen.</p></article>
+          <article class="feature rv"><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M10 9H8" /><path d="M16 13H8" /><path d="M16 17H8" /></svg></span><h3>PDF fürs Finanzamt</h3><p>Am Monatsende ein sauberes PDF, das Steuerberater und Finanzamt akzeptieren.</p></article>
+          <article class="feature rv"><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" /><circle cx="7" cy="17" r="2" /><path d="M9 17h6" /><circle cx="17" cy="17" r="2" /></svg></span><h3>Mehrere Fahrzeuge</h3><p>Jedes Fahrzeug mit eigenem Kilometerstand, jede Fahrt dem richtigen zugeordnet.</p></article>
+          <article class="feature rv"><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg></span><h3>Gespeicherte Orte</h3><p>Zuhause, Büro und Stammkunden hinterlegen — für noch treffsicherere Vorschläge.</p></article>
+          <article class="feature rv"><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" /></svg></span><h3>Privat und lokal-first</h3><p>Fahrten liegen auf dem Gerät, mit Konto optional in der EU-Cloud gesichert. Keine Werbung.</p></article>
+        </div>
       </div>
-      <p style="text-align:center;margin-top:28px">
-        <a class="open" style="color:var(--accent-soft);font-weight:700" href="https://dexware.app/" target="_blank" rel="noopener">Alle Dexware-Apps auf einen Blick →</a>
-      </p>
     </section>
-  </div>
+
+    <section class="soft" id="ablauf">
+      <div class="wrap flow">
+        <div class="rv">
+          <p class="eyebrow">So funktioniert's</p>
+          <h2>In drei Schritten zum Fahrtenbuch</h2>
+          <ol class="steps">
+            <li><b>Losfahren</b><p>TourDex erkennt die Fahrt automatisch und zeichnet Start, Ziel, Strecke und Zeit auf.</p></li>
+            <li><b>Bestätigen</b><p>Die KI schlägt geschäftlich oder privat vor — du bestätigst mit einem Tipp.</p></li>
+            <li><b>Exportieren</b><p>Am Monatsende das PDF erzeugen und an den Steuerberater schicken.</p></li>
+          </ol>
+        </div>
+        <div class="rv"><div class="phone lazy"><div class="screen" style="--bar:#0f1923"><img src="assets/shots/ablauf.webp" width="600" height="1022" alt="TourDex: Fahrt mit Start, Ziel, Kilometern und Zweck" decoding="async" loading="lazy"></div></div></div>
+      </div>
+    </section>
+
+    <section id="preise">
+      <div class="wrap">
+        <div class="head rv">
+          <p class="eyebrow">Preise</p>
+          <h2>Kostenlos starten, bei Bedarf upgraden.</h2>
+        </div>
+        <div class="plans">
+          <div class="plan rv">
+            <h3>Free</h3>
+            <p class="price">0 €</p>
+            <p class="per">für immer</p>
+            <ul><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>20 Fahrten pro Monat</li><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>Automatisches GPS-Tracking</li><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>KI-Kategorisierung</li><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>Dashboard & gespeicherte Orte</li></ul>
+          </div>
+          <div class="plan pro rv">
+            <span class="badge">Empfohlen</span>
+            <h3>TourDex Pro</h3>
+            <p class="price">Pro</p>
+            <p class="per">monatlich oder jährlich — aktueller Preis in der App</p>
+            <ul><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>Unbegrenzte Fahrten</li><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>Finanzamt-tauglicher PDF-Export</li><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>Unbegrenzte Fahrzeuge</li><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>Priorisierte KI-Kategorisierung</li><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>Bevorzugter Support</li></ul>
+          </div>
+          <div class="plan suite rv">
+            <h3>Dexware Suite</h3>
+            <p class="price">29,99 € <small>/ Monat</small></p>
+            <p class="per">oder 239,99 € im Jahr · entspricht 20 € im Monat</p>
+            <ul>
+              <li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>Alle 15 Dexware-Apps freigeschaltet</li>
+              <li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>Neue Apps automatisch dabei</li>
+              <li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>Ein Abo für alle Geräte</li>
+            </ul>
+            <div class="icons" aria-hidden="true"><img src="assets/apps/gurtdex.webp" alt="" width="26" height="26" loading="lazy" /><img src="assets/apps/toredex.webp" alt="" width="26" height="26" loading="lazy" /><img src="assets/apps/geruestdex.webp" alt="" width="26" height="26" loading="lazy" /><img src="assets/apps/feuerdex.webp" alt="" width="26" height="26" loading="lazy" /><img src="assets/apps/leiterdex.webp" alt="" width="26" height="26" loading="lazy" /><img src="assets/apps/regaldex.webp" alt="" width="26" height="26" loading="lazy" /><img src="assets/apps/spieldex.webp" alt="" width="26" height="26" loading="lazy" /><img src="assets/apps/winterdex.webp" alt="" width="26" height="26" loading="lazy" /><img src="assets/apps/kfzdex.webp" alt="" width="26" height="26" loading="lazy" /><img src="assets/apps/pruefdex.webp" alt="" width="26" height="26" loading="lazy" /><img src="assets/apps/schutzdex.webp" alt="" width="26" height="26" loading="lazy" /><img src="assets/apps/baumdex.webp" alt="" width="26" height="26" loading="lazy" /><img src="assets/apps/tourdex.webp" alt="" width="26" height="26" loading="lazy" /><img src="assets/apps/craftdex.webp" alt="" width="26" height="26" loading="lazy" /><img src="assets/apps/dokudex.webp" alt="" width="26" height="26" loading="lazy" /></div>
+          </div>
+        </div>
+        <p class="fine">Abschluss direkt in der App über Google Play · jederzeit kündbar · Preise inkl. MwSt.</p>
+      </div>
+    </section>
+
+    <section class="soft" id="faq">
+      <div class="wrap faq">
+        <div class="rv">
+          <p class="eyebrow">FAQ</p>
+          <h2>Häufige Fragen</h2>
+          <p class="ask"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg><span>Noch etwas offen? <a href="mailto:support@dexware.app?subject=TourDex">support@dexware.app</a></span></p>
+        </div>
+        <div class="rv">
+          <details><summary>Erkennt das Finanzamt ein elektronisches Fahrtenbuch an?<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></summary><div class="a">Ja, wenn es ordnungsgemäß geführt ist: zeitnah, lückenlos und in geschlossener Form, ohne dass sich Einträge nachträglich frei ändern lassen. Mehr im <a href="ratgeber-fahrtenbuch.html">Ratgeber Fahrtenbuch</a>.</div></details>
+          <details><summary>Muss ich die App jedes Mal starten?<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></summary><div class="a">Nein. Das Tracking läuft im Hintergrund und erkennt Fahrten von selbst. Eine vergessene Fahrt trägst du in Sekunden von Hand nach.</div></details>
+          <details><summary>In welchen Ländern funktioniert TourDex?<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></summary><div class="a">Kilometersätze, Währung und Einheiten passen für Deutschland, Österreich, die Schweiz, Großbritannien und die Niederlande. Die App spricht Deutsch, Englisch, Französisch und Niederländisch.</div></details>
+          <details><summary>Gibt es TourDex auch am PC?<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></summary><div class="a">Ja — im <a href="https://dashboard.dexware.app/app/tourdex">Dexware-Dashboard</a> siehst du Fahrten, Fahrzeuge, Orte und das Fahrtenbuch-PDF im Browser.</div></details>
+          <details><summary>Wo liegen meine Daten?<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></summary><div class="a">Deine Fahrten liegen zuerst auf deinem Gerät. Mit Konto werden sie optional in der EU-Cloud in Frankfurt gesichert. Keine Werbung, kein Tracking durch Dritte — Details in der <a href="datenschutz.html">Datenschutzerklärung</a>.</div></details>
+        </div>
+      </div>
+    </section>
+
+    <section id="dexware">
+      <div class="wrap">
+        <div class="family-row rv">
+          <div>
+            <p class="eyebrow">Teil von Dexware</p>
+            <h2>Eine App pro Pflicht.</h2>
+            <p class="lead">TourDex gehört zu Dexware — schlanke Apps für Prüfung und Dokumentation im Betrieb.</p>
+          </div>
+          <a href="https://dexware.app/" class="btn ghost sm">Alle Apps ansehen <svg class="i sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></a>
+        </div>
+        <div class="family rv">
+          <a href="https://gurtdex.dexware.app"><img src="assets/apps/gurtdex.webp" alt="" width="44" height="44" loading="lazy" /><b>GurtDex</b><small>PSA gegen Absturz</small></a>
+          <a href="https://toredex.dexware.app"><img src="assets/apps/toredex.webp" alt="" width="44" height="44" loading="lazy" /><b>ToreDex</b><small>Tore & Türen</small></a>
+          <a href="https://geruestdex.dexware.app"><img src="assets/apps/geruestdex.webp" alt="" width="44" height="44" loading="lazy" /><b>GerüstDex</b><small>Gerüstprüfung</small></a>
+          <a href="https://feuerdex.dexware.app"><img src="assets/apps/feuerdex.webp" alt="" width="44" height="44" loading="lazy" /><b>FeuerDex</b><small>Feuerlöscher</small></a>
+          <a href="https://leiterdex.dexware.app"><img src="assets/apps/leiterdex.webp" alt="" width="44" height="44" loading="lazy" /><b>LeiterDex</b><small>Leitern & Tritte</small></a>
+          <a href="https://regaldex.dexware.app"><img src="assets/apps/regaldex.webp" alt="" width="44" height="44" loading="lazy" /><b>RegalDex</b><small>Regalinspektion</small></a>
+          <a href="https://spieldex.dexware.app"><img src="assets/apps/spieldex.webp" alt="" width="44" height="44" loading="lazy" /><b>SpielDex</b><small>Spielplatzkontrolle</small></a>
+          <a href="https://winterdex.dexware.app"><img src="assets/apps/winterdex.webp" alt="" width="44" height="44" loading="lazy" /><b>WinterDex</b><small>Winterdienst</small></a>
+          <a href="https://kfzdex.dexware.app"><img src="assets/apps/kfzdex.webp" alt="" width="44" height="44" loading="lazy" /><b>KfzDex</b><small>Fuhrpark & UVV</small></a>
+          <a href="https://pruefdex.dexware.app"><img src="assets/apps/pruefdex.webp" alt="" width="44" height="44" loading="lazy" /><b>PrüfDex</b><small>DGUV V3</small></a>
+          <a href="https://schutzdex.dexware.app"><img src="assets/apps/schutzdex.webp" alt="" width="44" height="44" loading="lazy" /><b>SchutzDex</b><small>Unterweisungen</small></a>
+          <a href="https://baumdex.dexware.app"><img src="assets/apps/baumdex.webp" alt="" width="44" height="44" loading="lazy" /><b>BaumDex</b><small>Baumkataster</small></a>
+          <a href="https://craftdex.dexware.app"><img src="assets/apps/craftdex.webp" alt="" width="44" height="44" loading="lazy" /><b>CraftDex</b><small>Projekt-Doku</small></a>
+          <a href="https://dokudex.dexware.app"><img src="assets/apps/dokudex.webp" alt="" width="44" height="44" loading="lazy" /><b>DokuDex</b><small>Dokumente & KI</small></a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
+    <p class="wrap note">TourDex hilft beim Dokumentieren und ersetzt keine Steuerberatung. Bitte Einträge vor der Abgabe beim Finanzamt prüfen.</p>
     <div class="wrap">
-      <div class="foot-brand">TourDex</div>
-      <div>
-        <a href="ratgeber-fahrtenbuch.html">Ratgeber</a>
-        <a href="datenschutz.html">Datenschutz</a>
-        <a href="impressum.html">Impressum</a>
-        <a href="konto-loeschen.html">Konto löschen</a>
-      </div>
-      <div style="margin-top:8px; font-size:13px;">
-        <a href="privacy.html">Privacy</a>
-        <a href="imprint.html">Imprint</a>
-        <a href="delete-account.html">Delete account</a>
-      </div>
-      <p class="flags">🇩🇪 🇦🇹 🇨🇭 🇬🇧 🇳🇱 — gebaut für Fahrer in ganz Europa.</p>
-      <p style="margin-top:12px">© 2026 TourDex. Mit ♥ gebaut.</p>
-      <p style="margin-top:10px; max-width:560px; margin-left:auto; margin-right:auto;">TourDex hilft beim Dokumentieren und ersetzt keine Steuerberatung. Bitte Einträge vor der Abgabe beim Finanzamt prüfen.</p>
+      <span>© 2026 TourDex · ein Produkt von <a href="https://dexware.app/">Dexware</a></span>
+      <nav aria-label="Rechtliches"><a href="ratgeber-fahrtenbuch.html">Ratgeber</a><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="konto-loeschen.html">Konto löschen</a><a href="imprint.html">Imprint</a><a href="privacy.html">Privacy</a><a href="delete-account.html">Delete account</a><a href="mailto:support@dexware.app?subject=TourDex%20Support">Support</a></nav>
     </div>
   </footer>
 
   <script>
     (function () {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      if (!('IntersectionObserver' in window)) return;
-      var els = document.querySelectorAll('.reveal');
-      for (var i = 0; i < els.length; i++) els[i].classList.add('pre');
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-        });
-      }, { threshold: 0.12 });
-      for (var j = 0; j < els.length; j++) io.observe(els[j]);
+      var top = document.querySelector('.top');
+      var onScroll = function () { top.classList.toggle('scrolled', window.scrollY > 8); };
+      onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+      var els = document.querySelectorAll('.rv');
+      if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        els.forEach(function (e) { e.classList.add('in'); }); return;
+      }
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+      els.forEach(function (e) { io.observe(e); });
     })();
   </script>
 </body>
