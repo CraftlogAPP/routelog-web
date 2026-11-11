@@ -390,6 +390,8 @@
     .fam-tag .i { width: 14px; height: 14px; }
     .fam-tag.own { background: transparent; color: var(--muted); border: 1px dashed color-mix(in oklab, var(--muted) 70%, transparent); }
     @media (max-width: 480px) { .fam-head { font-size: 14px; } .fam-tier .family { margin-top: 8px; } }
+
+    @media (max-width: 900px) and (min-width: 601px) { .feature:last-child { grid-column: auto; } }
   </style>
   <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -409,7 +411,7 @@
         <div>
           <span class="kicker">Das smarte Fahrtenbuch · DE · AT · CH · UK · NL</span>
           <h1>Jeder Kilometer, <em>automatisch erfasst.</em></h1>
-          <p class="sub">TourDex zeichnet deine Fahrten im Hintergrund auf und sortiert sie per KI in geschäftlich und privat. Du bestätigst mit einem Tipp — am Monatsende exportierst du ein <strong>Fahrtenbuch-PDF mit Kilometerstand</strong>.</p>
+          <p class="sub">TourDex zeichnet deine Fahrten im Hintergrund auf und sortiert sie per KI in geschäftlich und privat. Du bestätigst mit einem Tipp, am Monatsende exportierst du ein <strong>Fahrtenbuch-PDF mit Kilometerstand</strong>.</p>
           <div class="cta">
             <a class="btn" id="store-link" href="https://play.google.com/store/apps/details?id=com.routelog.app" target="_blank" rel="noopener"><svg class="play" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17a1 1 0 0 0 1.5.86l14-8.5a1 1 0 0 0 0-1.72l-14-8.5A1 1 0 0 0 6 3.5z"/></svg>Kostenlos bei Google Play</a>
             
@@ -430,10 +432,10 @@
         <div class="rv">
           <p class="eyebrow">Ordnungsgemäß</p>
           <h2>Ein Fahrtenbuch zählt nur, wenn es ordnungsgemäß ist</h2>
-          <p class="lead">Wer den Firmenwagen auch privat nutzt, kann statt der 1-%-Regelung den tatsächlichen Anteil per Fahrtenbuch nachweisen — und oft Geld sparen. Für Selbstständige, Freiberufler und kleine Betriebe.</p>
+          <p class="lead">Wer den Firmenwagen auch privat nutzt, kann statt der 1-%-Regelung den tatsächlichen Anteil per Fahrtenbuch nachweisen und oft Geld sparen. Für Selbstständige, Freiberufler und kleine Betriebe.</p>
         </div>
         <ul class="rules rv">
-          <li><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg></span><span><b>Zeitnah</b>Einträge entstehen mit der Fahrt — nicht Wochen später aus der Erinnerung.</span></li>
+          <li><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg></span><span><b>Zeitnah</b>Einträge entstehen mit der Fahrt, nicht Wochen später aus der Erinnerung.</span></li>
           <li><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="3" /><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15" /><circle cx="18" cy="5" r="3" /></svg></span><span><b>Lückenlos</b>Jede Fahrt wird erfasst, betrieblich wie privat.</span></li>
           <li><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg></span><span><b>In geschlossener Form</b>Keine losen Zettel und keine frei änderbare Excel-Tabelle.</span></li>
           <li><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" /><path d="m9 13 2 2 4-4" /></svg></span><span><b>Pflichtangaben</b>Datum, Kilometerstand, Ziel und Zweck je betrieblicher Fahrt.</span></li>
@@ -446,15 +448,12 @@
         <div class="head rv">
           <p class="eyebrow">Funktionen</p>
           <h2>Dein Fahrtenbuch schreibt sich selbst</h2>
-          <p class="lead">Losfahren, bestätigen, exportieren — den Rest erledigt TourDex.</p>
+          <p class="lead">Losfahren, bestätigen, exportieren. Den Rest erledigt TourDex.</p>
         </div>
         <div class="features">
-          <article class="feature rv"><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11" /></svg></span><h3>Automatisches GPS-Tracking</h3><p>Fahrten starten und stoppen von selbst — auch wenn die App geschlossen ist.</p></article>
-          <article class="feature rv"><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" /><path d="M20 3v4" /><path d="M22 5h-4" /><path d="M4 17v2" /><path d="M5 18H3" /></svg></span><h3>KI-Kategorisierung</h3><p>Geschäftlich, Arbeitsweg oder privat — aus Ziel, Uhrzeit, Wochentag und deinen Orten vorgeschlagen.</p></article>
-          <article class="feature rv"><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M10 9H8" /><path d="M16 13H8" /><path d="M16 17H8" /></svg></span><h3>PDF fürs Finanzamt</h3><p>Am Monatsende ein sauberes PDF für Steuerberatung und Finanzamt.</p></article>
-          <article class="feature rv"><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" /><circle cx="7" cy="17" r="2" /><path d="M9 17h6" /><circle cx="17" cy="17" r="2" /></svg></span><h3>Mehrere Fahrzeuge</h3><p>Jedes Fahrzeug mit eigenem Kilometerstand, jede Fahrt dem richtigen zugeordnet.</p></article>
-          <article class="feature rv"><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg></span><h3>Gespeicherte Orte</h3><p>Zuhause, Büro und Stammkunden hinterlegen — für noch treffsicherere Vorschläge.</p></article>
-          <article class="feature rv"><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" /></svg></span><h3>Privat und lokal-first</h3><p>Fahrten liegen auf dem Gerät, mit Konto optional in der EU-Cloud gesichert. Keine Werbung.</p></article>
+          <article class="feature rv"><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11" /></svg></span><h3>Automatisches GPS-Tracking</h3><p>Fahrten starten und stoppen von selbst, auch wenn die App geschlossen ist. Mehrere Fahrzeuge, jedes mit eigenem Kilometerstand.</p></article>
+          <article class="feature rv"><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" /><path d="M20 3v4" /><path d="M22 5h-4" /><path d="M4 17v2" /><path d="M5 18H3" /></svg></span><h3>KI-Kategorisierung</h3><p>Geschäftlich, Arbeitsweg oder privat: vorgeschlagen aus Ziel, Uhrzeit, Wochentag und deinen gespeicherten Orten wie Zuhause, Büro und Stammkunden.</p></article>
+          <article class="feature rv"><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M10 9H8" /><path d="M16 13H8" /><path d="M16 17H8" /></svg></span><h3>PDF fürs Finanzamt</h3><p>Am Monatsende ein sauberes PDF für Steuerberatung und Finanzamt. Fahrten liegen auf dem Gerät, mit Konto optional in der EU-Cloud. Keine Werbung.</p></article>
         </div>
       </div>
     </section>
@@ -466,7 +465,7 @@
           <h2>In drei Schritten zum Fahrtenbuch</h2>
           <ol class="steps">
             <li><b>Losfahren</b><p>TourDex erkennt die Fahrt automatisch und zeichnet Start, Ziel, Strecke und Zeit auf.</p></li>
-            <li><b>Bestätigen</b><p>Die KI schlägt geschäftlich oder privat vor — du bestätigst mit einem Tipp.</p></li>
+            <li><b>Bestätigen</b><p>Die KI schlägt geschäftlich oder privat vor, du bestätigst mit einem Tipp.</p></li>
             <li><b>Exportieren</b><p>Am Monatsende das PDF erzeugen und an den Steuerberater schicken.</p></li>
           </ol>
         </div>
