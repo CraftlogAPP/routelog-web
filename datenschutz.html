@@ -31,7 +31,7 @@
 </a>
 <div style="font-size:13px;margin:-24px 0 28px;"><span style="color:#94A3B8;">DE</span> · <a href="privacy.html" style="color:#60A5FA;">EN</a></div>
 <h1>Datenschutzerklärung</h1>
-<p class="muted">Stand: November 2026</p>
+<p class="muted">Stand: 24.11.2026</p>
 
 <p>Diese Datenschutzerklärung informiert Sie über die Verarbeitung personenbezogener Daten bei der Nutzung der mobilen Anwendung <strong>TourDex</strong> (nachfolgend „App“) gemäß der Datenschutz-Grundverordnung (DSGVO) sowie – soweit anwendbar – dem österreichischen DSG, dem deutschen BDSG und dem Schweizer DSG.</p>
 
@@ -44,14 +44,15 @@ E-Mail: <a href="mailto:datenschutz@dexware.app">datenschutz@dexware.app</a>
 </p>
 
 <h2>2. Grundprinzip: lokal-first</h2>
-<p>TourDex ist „lokal-first“ aufgebaut: Ihre Fahrten, Orte, Fahrzeuge und Einstellungen werden zunächst <strong>lokal auf Ihrem Gerät</strong> gespeichert (Gerätespeicher / AsyncStorage). Eine Übertragung an Server erfolgt nur in folgenden Fällen: (a) wenn Sie ein Konto zur Cloud-Synchronisation anlegen (Ziffer 3) und (b) für die optionale KI-Kategorisierung (Ziffer 5). Ohne Konto und mit deaktivierter KI bleiben Ihre Daten ausschließlich auf Ihrem Gerät.</p>
+<p>TourDex ist „lokal-first“ aufgebaut: Ihre Fahrten, Orte, Fahrzeuge und Einstellungen werden zunächst <strong>lokal auf Ihrem Gerät</strong> gespeichert (Gerätespeicher / AsyncStorage). Eine Übertragung an Server erfolgt nur in folgenden Fällen: (a) wenn Sie ein Konto zur Cloud-Synchronisation anlegen (Ziffer 3), (b) für die optionale KI-Kategorisierung (Ziffer 5), (c) für die Adresssuche und Routenschätzung beim Eingeben von Adressen (Ziffer 5a) und (d) wenn Sie uns eine Rückmeldung schicken (Ziffer 5b). Ohne Konto und mit deaktivierter KI bleiben Ihre Fahrten ausschließlich auf Ihrem Gerät; an die in Ziffer 5a genannten Dienste gehen dann nur Ihre Suchanfragen bzw. die Koordinaten der eingegebenen Adressen.</p>
 
 <h2>3. Benutzerkonto und Cloud-Synchronisation (optional)</h2>
 <p>Sie können TourDex ohne Konto rein lokal nutzen. Legen Sie ein Konto an, um Ihre Daten zu sichern und geräteübergreifend verfügbar zu machen, verarbeiten wir:</p>
 <ul>
   <li><strong>Kontodaten:</strong> Ihre E-Mail-Adresse sowie ein sicher gespeichertes (gehashtes) Passwort zur Anmeldung.</li>
   <li><strong>Synchronisierte Inhalte:</strong> Ihre Fahrten, Fahrzeuge und gespeicherten Orte werden in der Cloud gespeichert, damit sie gesichert und auf Ihren Geräten verfügbar sind.</li>
-  <li><strong>Auftragsverarbeiter:</strong> Supabase (Hosting von Authentifizierung und Datenbank). Die Daten werden in einem Rechenzentrum in der <strong>Europäischen Union (Frankfurt, Deutschland)</strong> gespeichert; eine Drittlandübermittlung findet insoweit nicht statt. Es besteht ein Auftragsverarbeitungsvertrag gem. Art. 28 DSGVO.</li>
+  <li><strong>Auftragsverarbeiter:</strong> Supabase (Supabase Pte. Ltd., Singapur; Hosting von Authentifizierung und Datenbank). Die Daten werden in einem Rechenzentrum in der <strong>Europäischen Union (Frankfurt, Deutschland)</strong> gespeichert; soweit der Anbieter von außerhalb der EU darauf zugreifen kann, gelten die EU-Standardvertragsklauseln. Es besteht ein Auftragsverarbeitungsvertrag gem. Art. 28 DSGVO.</li>
+  <li><strong>E-Mails:</strong> Anmelde-, Bestätigungs- und Passwort-Mails versenden wir über den Versanddienst Brevo (Sendinblue SAS, Frankreich).</li>
   <li><strong>Zugriffsschutz:</strong> Jeder Nutzer kann ausschließlich auf seine eigenen Daten zugreifen (Row-Level-Security).</li>
   <li><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (Erfüllung des Nutzungsvertrags bzw. Bereitstellung der Sync-Funktion).</li>
   <li><strong>Löschung:</strong> Sie können Ihr Konto und sämtliche in der Cloud gespeicherten Daten jederzeit in der App unter „Mehr → Konto löschen“ unwiderruflich entfernen.</li>
@@ -77,6 +78,12 @@ E-Mail: <a href="mailto:datenschutz@dexware.app">datenschutz@dexware.app</a>
   <li><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung) bzw. Art. 6 Abs. 1 lit. a DSGVO (Einwilligung).</li>
 </ul>
 <p>Sie können die KI-Funktion deaktiviert lassen; die App kategorisiert dann lokal anhand einfacher Regeln.</p>
+
+<h2>5a. Adresssuche und Routenschätzung</h2>
+<p>Wenn Sie in der App eine Adresse eingeben (z. B. beim manuellen Anlegen einer Fahrt), schlägt die App passende Adressen vor. Dazu wird Ihr Suchtext – und, falls bereits eingegeben, die Koordinaten der Startadresse zur Sortierung der Vorschläge – an den Suchdienst <strong>Photon</strong> der komoot GmbH (Deutschland) übermittelt. Für die Schätzung von Entfernung und Fahrzeit zwischen zwei Adressen werden deren Koordinaten an den öffentlichen Routing-Dienst <strong>OSRM</strong> (Project OSRM, router.project-osrm.org) übermittelt. Dabei wird technisch bedingt Ihre IP-Adresse übertragen; Konto- oder Gerätekennungen werden nicht übermittelt. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Bereitstellung der Funktion). Ohne Adresseingabe findet keine Übermittlung statt.</p>
+
+<h2>5b. Rückmeldungen („Fehler melden“, „Verbesserung vorschlagen“)</h2>
+<p>Wenn Sie uns in der App eine Rückmeldung schicken, speichern wir Ihren Text, den Zeitpunkt, die App-Version, Gerätetyp und Betriebssystem sowie die Kennung und E-Mail-Adresse Ihres Kontos, damit wir antworten können. Gespeichert wird auf unserem zentralen Dexware-Server bei Supabase (Rechenzentrum EU). Bitte schreiben Sie keine Daten anderer Personen in die Nachricht. Rechtsgrundlage: Art. 6 Abs. 1 lit. b und f DSGVO (Support und Verbesserung der App). Rückmeldungen bewahren wir auf, solange wir sie für Bearbeitung und Weiterentwicklung brauchen; auf Wunsch löschen wir sie jederzeit (E-Mail an <a href="mailto:datenschutz@dexware.app">datenschutz@dexware.app</a>).</p>
 
 <h2>6. Abonnement / In-App-Käufe</h2>
 <p>Die Abwicklung von Abonnements („TourDex Pro“) erfolgt über den Google Play Store bzw. den Apple App Store. Die Zahlungs- und Vertragsdaten werden von diesem Anbieter nach dessen Datenschutzbestimmungen verarbeitet. Wir erhalten nur den Status Ihres Abonnements, keine Zahlungsdaten. Zur Verwaltung des Abos und des Kaufstatus nutzen wir <strong>RevenueCat, Inc.</strong> (USA); übermittelt werden Kauf-/Belegdaten und eine pseudonyme Nutzerkennung, keine Klarnamen (Drittlandtransfer auf Basis der EU-Standardvertragsklauseln).</p>
