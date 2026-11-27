@@ -1,6 +1,6 @@
 # TourDex
 
-> TourDex ist eine App von Dexware. Fahrtenbuch führen ohne Zettel: Fahrten per GPS erkennen, geschäftlich oder privat bestätigen, mit Pro als PDF fürs Finanzamt. 10 Fahrten im Monat gratis. Android-App bei Google Play, für iPhone und iPad bald. Pro 4,99 € im Monat.
+> TourDex ist eine App von Dexware. Fahrtenbuch führen ohne Zettel: Fahrten per GPS erkennen, geschäftlich oder privat bestätigen, mit Pro als PDF fürs Finanzamt. 10 Fahrten im Monat gratis. Android-App bei Google Play, für iPhone und iPad bald. Pro 4,99 € im Monat oder 49,99 € im Jahr.
 
 Sachliche Kurzinfo für Sprachmodelle und Suchdienste. Maßgeblich sind die Angaben auf https://tourdex.dexware.app/. Anbieter: Dexware (https://dexware.app/), Kontakt: support@dexware.app.
 
@@ -22,7 +22,7 @@ Aufgezeichnet wird in der App. Im Dexware-Dashboard am Computer siehst du alle F
 ## Preise
 
 - Gratis (für immer): 10 Fahrten pro Monat; Automatisches GPS-Tracking; KI-Kategorisierung; Mehrere Fahrzeuge; Dashboard & gespeicherte Orte
-- Pro: 4,99 € im Monat oder im Jahresabo mit 2 Monaten gratis. Enthält: Unbegrenzte Fahrten; PDF-Export mit Kilometerstand & Änderungsprotokoll; Eigenes Logo & Akzentfarbe im PDF; Alles aus Free inklusive; Bevorzugter Support
+- Pro: 4,99 € im Monat oder 49,99 € im Jahr – 2 Monate gratis. Enthält: Unbegrenzte Fahrten; PDF-Export mit Kilometerstand & Änderungsprotokoll; Eigenes Logo & Akzentfarbe im PDF; Alles aus Free inklusive; Bevorzugter Support
 - Preise inkl. MwSt., Abo jederzeit kündbar.
 
 ## Kurz beantwortet
