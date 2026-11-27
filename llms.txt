@@ -1,0 +1,55 @@
+# TourDex
+
+> TourDex ist eine App von Dexware. Fahrtenbuch führen ohne Zettel: Fahrten per GPS erkennen, geschäftlich oder privat bestätigen, mit Pro als PDF fürs Finanzamt. 10 Fahrten im Monat gratis. Android-App bei Google Play, für iPhone und iPad bald. Pro 4,99 € im Monat.
+
+Sachliche Kurzinfo für Sprachmodelle und Suchdienste. Maßgeblich sind die Angaben auf https://tourdex.dexware.app/. Anbieter: Dexware (https://dexware.app/), Kontakt: support@dexware.app.
+
+## Was TourDex macht
+
+- Automatisches GPS-Tracking: Fahrten starten und stoppen von selbst, auch wenn die App geschlossen ist. Mehrere Fahrzeuge, jedes mit eigenem Kilometerstand.
+- KI-Kategorisierung: Geschäftlich, Arbeitsweg oder privat: vorgeschlagen aus Ziel, Uhrzeit, Wochentag und deinen gespeicherten Orten wie Zuhause, Büro und Stammkunden.
+- PDF fürs Finanzamt: Mit Pro am Monatsende ein sauberes PDF für Steuerberatung und Finanzamt, mit Kilometerstand, sobald der Anfangsstand beim Fahrzeug hinterlegt ist. Fahrten liegen auf dem Gerät, mit Konto optional in der EU-Cloud. Keine Werbung.
+
+## Am PC im Dexware-Dashboard
+
+Aufgezeichnet wird in der App. Im Dexware-Dashboard am Computer siehst du alle Fahrten und machst das Fahrtenbuch fertig — mit demselben Konto.
+
+- Unbestätigte Fahrten: Die Übersicht zeigt Kilometer, Anteil geschäftlich und was noch zu bestätigen ist.
+- Bearbeiten und nachtragen: Fahrten einordnen, bestätigen und vergessene Fahrten nachtragen. Bestätigte Fahrten werden storniert, nicht gelöscht.
+- Fahrtenbuch-PDF (Pro): Je Fahrzeug und Zeitraum, mit Start, Ziel, Anlass, Kilometern und Zusammenfassung nach Kategorien.
+- Excel-Liste (Pro): Für Reisekosten und Steuerberatung, mit Kilometern je Fahrzeug und Monat.
+
+## Preise
+
+- Gratis (für immer): 10 Fahrten pro Monat; Automatisches GPS-Tracking; KI-Kategorisierung; Mehrere Fahrzeuge; Dashboard & gespeicherte Orte
+- Pro: 4,99 € im Monat oder im Jahresabo mit 2 Monaten gratis. Enthält: Unbegrenzte Fahrten; PDF-Export mit Kilometerstand & Änderungsprotokoll; Eigenes Logo & Akzentfarbe im PDF; Alles aus Free inklusive; Bevorzugter Support
+- Preise inkl. MwSt., Abo jederzeit kündbar.
+
+## Kurz beantwortet
+
+- Wie führe ich ein Fahrtenbuch richtig? Zeitnah, lückenlos und in geschlossener Form: jede Fahrt sofort erfassen, auch die privaten, und nichts nachträglich aus der Erinnerung rekonstruieren.
+- Erkennt das Finanzamt ein elektronisches Fahrtenbuch an? Ja, wenn es ordnungsgemäß geführt ist und spätere Änderungen technisch ausgeschlossen oder zumindest dokumentiert sind. Eine frei editierbare Excel-Tabelle erfüllt das nicht.
+- Muss ich die App jedes Mal starten? Nein. Das Tracking läuft im Hintergrund und erkennt Fahrten von selbst. Eine vergessene Fahrt trägst du in Sekunden von Hand nach.
+- In welchen Ländern funktioniert TourDex? Kilometersätze, Währung und Einheiten passen für Deutschland, Österreich, die Schweiz, Großbritannien und die Niederlande. Die App spricht Deutsch, Englisch, Französisch und Niederländisch.
+- Kann ich meine Fahrten auch am Computer ansehen? Ja, im Dexware-Dashboard im Browser: Fahrten, Fahrzeuge, Orte und das Fahrtenbuch-PDF.
+- Wo speichert TourDex meine Fahrten? Zuerst auf deinem Gerät. Mit Konto werden sie optional in der EU-Cloud in Frankfurt gesichert. Für die KI-Einordnung gehen Start, Ziel und Uhrzeit einer Fahrt an einen KI-Dienst; abschalten kannst du das unter „Mehr → Fahrten per KI einordnen“, dann ordnen nur Regeln auf dem Gerät ein.
+- Alle Antworten: https://tourdex.dexware.app/#faq
+
+## Seiten
+
+- [Startseite](https://tourdex.dexware.app/): Funktionen, Preise, häufige Fragen
+- [Preise](https://tourdex.dexware.app/#preise): Gratis und Pro
+- [Häufige Fragen](https://tourdex.dexware.app/#faq)
+- [Dexware-Dashboard](https://dashboard.dexware.app/app/tourdex): am PC im Browser, mit demselben Konto
+- [Google Play](https://play.google.com/store/apps/details?id=com.routelog.app): Android-App
+- [Dexware](https://dexware.app/): alle Apps von Dexware
+
+## Ratgeber
+
+- [Fahrtenbuch richtig führen: Pflichtangaben](https://tourdex.dexware.app/ratgeber-fahrtenbuch.html): Fahrtenbuch führen leicht gemacht: Was ein ordnungsgemäßes Fahrtenbuch verlangt, welche Angaben bei jeder Fahrt Pflicht sind, wann sich das Fahrtenbuch gegenüber der 1-%-Regelung lohnt — und warum eine Excel-Tabelle nicht genügt.
+
+## Rechtliches
+
+- [Impressum](https://tourdex.dexware.app/impressum.html)
+- [Datenschutz](https://tourdex.dexware.app/datenschutz.html)
+- [AGB](https://tourdex.dexware.app/agb.html)
