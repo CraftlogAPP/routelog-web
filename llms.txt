@@ -46,7 +46,7 @@ Aufgezeichnet wird in der App. Im Dexware-Dashboard am Computer siehst du alle F
 
 ## Ratgeber
 
-- [Fahrtenbuch richtig führen: Pflichtangaben](https://tourdex.dexware.app/ratgeber-fahrtenbuch.html): Fahrtenbuch führen leicht gemacht: Was ein ordnungsgemäßes Fahrtenbuch verlangt, welche Angaben bei jeder Fahrt Pflicht sind, wann sich das Fahrtenbuch gegenüber der 1-%-Regelung lohnt — und warum eine Excel-Tabelle nicht genügt.
+- [Fahrtenbuch richtig führen: Pflichtangaben](https://tourdex.dexware.app/ratgeber-fahrtenbuch.html): Fahrtenbuch richtig führen: welche Angaben je Fahrt Pflicht sind, wann es sich gegenüber der 1-%-Regelung lohnt und warum eine Excel-Tabelle nicht genügt.
 
 ## Rechtliches
 
